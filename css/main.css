@@ -1,0 +1,11 @@
+.container {
+  margin-top: 15px;
+}
+
+.exercisecontainer {
+  border: black 4px dotted;
+}
+
+.exerciseframe {
+  padding: 15px;
+}
