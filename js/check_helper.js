@@ -115,6 +115,9 @@ export function innerTextStartsWith(elID, innerText) {
 
 export function elementIsCorrectTag(elID, requiredTag) {
   let el = document.getElementById(elID);
+  if (!el) {
+    return getFailResultObj(elDoesNotExistMsg(elID));
+  } 
   if (el.tagName.toUpperCase() !== requiredTag.toUpperCase()) {
     return getFailResultObj(elWrongTagMsg(elID, el.tagName, requiredTag));
   }
@@ -138,6 +141,39 @@ export function hasCorrectStyleValue(elName, styleName, styleValue) {
   }
   return getSuccessResultObj();
 }
+
+export function isBlockElement(elName) {
+  let el = document.getElementById(elName);
+  if (!el) {
+    return getFailResultObj(elDoesNotExistMsg(elName));
+  } 
+  if (el.style.display === "block") {
+    return getSuccessResultObj();
+  }
+  return getFailResultObj(`Das Element ${elName} ist kein Block Element`)
+}
+
+export function isInlineElement(elName) {
+  // inline-block is considered inline
+  let el = document.getElementById(elName);
+  if (!el) {
+    return getFailResultObj(elDoesNotExistMsg(elName));
+  } 
+  if (el.style.display !== "block") {
+    return getSuccessResultObj();
+  }
+  return getFailResultObj(`Das Element ${elName} ist kein Inline Element`)
+}
+
+export function listHasMinElements(elName, numElements) {
+  let el = document.getElementById(elName);
+  let children = el.getElementsByTagName("li");
+  if (children.length >= numElements) {
+    return getSuccessResultObj();
+  }
+  return getFailResultObj(`Die Liste ${elName} hat nicht genug Elemente (mindestens: ${numElements}).`)
+}
+
 
 /* Main validation procedure */
 

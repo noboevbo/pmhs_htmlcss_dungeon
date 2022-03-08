@@ -1,4 +1,4 @@
-import { elementIsCorrectTag, getFailResultObj, getSuccessResultObj, innerTextEquals, innerTextStartsWith, validate} from '../check_helper.js';
+import { elementIsCorrectTag, getFailResultObj, getSuccessResultObj, innerTextEquals, innerTextStartsWith, isBlockElement, isInlineElement, listHasMinElements, validate} from '../check_helper.js';
 
 let exerciseID = "01_html_tags";
 
@@ -22,8 +22,11 @@ let validationFuncs = [
   function() { return elementIsCorrectTag("spielertext", "p"); },
   function() { return innerTextEquals("titel", "Dungeon Run 1"); },
   function() { return innerTextStartsWith("spielertext", "Spielername: "); },
-  function() { return checkPlayerName(); }
-
+  function() { return checkPlayerName(); },
+  function() { return elementIsCorrectTag("dieliste", "ol"); },
+  function() { return listHasMinElements("dieliste", 3); },
+  function() { return isInlineElement("inlinelement"); },
+  function() { return isBlockElement("blockelement"); },
 ]
 
 function beforeSuccess() {
@@ -43,6 +46,9 @@ let instructions = `
 <li>Erstelle eine Überschrift erster Ordnung mit dem Titel <em>Dungeon Run 1</em>. Die Überschrift soll die ID <em>titel</em> haben.</li>
 <li>Erstelle einen Paragraphen, mit dem Text <em>Spielername: DEINSPIELERNAME</em>, erstetze <em>DEINSPIELERNAME</em> dabei mit einem beliebigen Namen. Der Paragraph soll die ID <em>spielertext</em> haben.</li>
 <li>Der Spielername soll <b>fett</b> dargestellt werden.</li>
+<li>Erstelle eine geordnete Liste mit mindestens drei Einträgen! Das Listenelement soll die ID <em>dieliste</em> haben.</li>
+<li>Erstelle eine Inline Element. Das Element soll die ID <em>inlineelement</em> haben.</li>
+<li>Erstelle ein Block Element. Das Element soll die ID <em>blockelement</em> haben.</li>
 </ol>
 `
 
