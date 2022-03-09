@@ -6,6 +6,30 @@
 3. Im Ordner js/checks/ das Template kopieren und unter neuem Aufgabennamen einfügen und den Check implementieren
 4. In der Datei js/jsdungeon.js das Array exerciseList um die neue Aufgabe (Aufgabenname == Dateiname) erweitern
 
+## Tipp Generell:
+https://www.w3schools.com/html/default.asp durchschauen, jede Seite verstehen
+
+## Was muss vermittelt werden?
+- Begrifflichkeiten (semantische Tags, responsive layouts, Block vs Inline, ...)
+- HTML Tags generell
+- Boxmodell!
+- CSS (hauptsächlich richtung Farben, Typo, Border, Margin, Padding, ...)
+- Barrierefreiheit (img alt usw.)
+## TODOs
+Aufgaben in Kategorien ordnen (nach https://www.on-design.de/tutor/html5_css3/referenzen/vokabel.html)? Head Elemente
+Body Elemente
+Block Elemente (Strukturgebend)
+Formular Elemente
+Tabellen Elemente
+Inline-Block Elemente
+Inline Elemente
+Zeichenformate / semantische Textauszeichnung
+logische Zeichenformate
+Semantische Blockelemente (section, nav, article, ...)
+Eingebettete Inhalte (audoi video, HTML5 kram halt)
+
+Semantische vs nicht semantische Elemente (https://www.w3schools.com/html/html5_semantic_elements.asp)
+Responsive (Viewport, bilder width, max width, relativ vs absolut, responsive font size, media queries)
 ## TODOs
 - ABI Prüfungen: Inline styles vs externe styles?
 - Aufgabe Text Styles (Farbe, Größe, Sans / Serif / Webfonts?!)
