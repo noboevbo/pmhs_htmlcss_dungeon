@@ -127,7 +127,7 @@ export function elementIsCorrectTag(elID, requiredTag) {
 
 export function elementIsChildOf(elID, parentID) {
   let el = document.getElementById(elID);
-  if (el.parentElement && el.parentElement.id === parentID) {
+  if (el && el.parentElement && el.parentElement.id === parentID) {
     return getSuccessResultObj();
   } 
   return getFailResultObj(`Das Element ${elID} ist kein Kindelement von ${parentID}.`);
@@ -136,7 +136,7 @@ export function elementIsChildOf(elID, parentID) {
 export function linkTargetIsCorrect(elID, target) {
   let el = document.getElementById(elID);
   console.log(el.href);
-  if (el.getAttribute("href") === target) {
+  if (el && el.getAttribute("href") === target) {
     return getSuccessResultObj();
   }
   return getFailResultObj(`Das Ziel des Links <em>${el.id}</em> ist nicht korrekt!`);
@@ -144,7 +144,7 @@ export function linkTargetIsCorrect(elID, target) {
 
 export function linkContentIsCorrect(elID, content) {
   let el = document.getElementById(elID);
-  if (el.innerHTML === content) {
+  if (el && el.innerHTML === content) {
     return getSuccessResultObj();
   }
   return getFailResultObj(`Der Inhalt des Links <em>${el.id}</em> ist nicht korrekt!`);
@@ -152,7 +152,7 @@ export function linkContentIsCorrect(elID, content) {
 
 export function elSrcAttributeIs(elID, path) {
   let el = document.getElementById(elID);
-  if (el.getAttribute("src") === path) {
+  if (el && el.getAttribute("src") === path) {
     return getSuccessResultObj();
   }
   return getFailResultObj(`Der Pfad des Elements <em>${el.id}</em> ist nicht korrekt!`);
@@ -288,6 +288,7 @@ export function or(resultObjects) {
 export const noop = () => {};
 
 export function validate(exerciseID, validationFuncs, beforeSuccess = noop, afterSuccess = noop, beforeFail = noop, afterFail = noop) {
+  console.log("validate");
   let finalResult = true;
   let errorMessages = [];
   for(let i = 0; i < validationFuncs.length; i++) {

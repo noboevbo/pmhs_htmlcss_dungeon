@@ -10,6 +10,7 @@ var exercises = [
     { id: "07_html_tabellen", name: "HTML Tabellen" },
     { id: "08_html_formulare", name: "HTML Formulare" },
     { id: "09_html_strukturierung", name: "HTML Strukturierung" },
+    { id: "10_html_navbar", name: "HTML Navbar" },
 ];
 
 const emptyExerciseState = { solved: false, tipsPurchased: [], lastUpdate: Date.now() };
@@ -39,14 +40,21 @@ var currentTips = []
 var currentTipNodes = []
 
 function init() {
+    console.log("init");
     initializeDatabase(exercises);
     initializePlayerGold();
     updatePageVariables();
     initializeExercises();
     initializeActiveExercise();
 }
-
+deinitialize();
 window.onload = init;
+
+function deinitialize() {
+    console.log("unload")
+    deinitializeActiveExercise();
+}
+window.onbeforeunload = deinitialize;
 
 function initializePlayerGold() {
     let playerGold = localStorage.getItem("playerGold");
@@ -124,6 +132,15 @@ function initializeActiveExercise() {
     }
 }
 
+function deinitializeActiveExercise() {
+    // localStorage.removeItem("selectedExercise");
+    console.log("deinit");
+    exerciseTipListEl.innerHTML = "";
+    selectedExerciseNameEl.innerText = "Keine Aufgabe ausgewählt";
+    selectedExerciseEl.src = "";
+    exerciseResultMessageListEl.innerHTML = "";
+}
+
 function updateExerciseState(exerciseID, exerciseState, errorMessages = []) {
     let linkNode = document.getElementById(exerciseID + "_link");
     let stateSymbol = exerciseState.solved ? '✅' : '❌';
@@ -139,9 +156,11 @@ function exerciseSelected(exerciseNumber) {
 }
 
 function setActiveExercise(exercise) {
+    console.log("Set");
     exerciseTipListEl.innerHTML = "";
     selectedExerciseNameEl.innerText = "Aufgabe: " + exercise.name;
     selectedExerciseEl.src = "aufgaben/" + exercise.id + ".html";
+    selectedExerciseEl.contentWindow.location.reload(true);
     // selectedExerciseEl.setAttribute('onload', `injectDungeonCode("${exercise.id}")`);
     updateExerciseState(exercise.id, getExerciseState(exercise.id));
 }
