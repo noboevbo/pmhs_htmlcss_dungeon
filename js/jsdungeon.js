@@ -2,6 +2,7 @@ var exercises = [
     // id, title
     { id: "00_tutorial", name: "Tutorial" },
     { id: "01_html_tags", name: "HTML Tags" },
+    { id: "02_html_typo", name: "HTML Typografie" },
 ];
 
 const emptyExerciseState = { solved: false, tipsPurchased: [], lastUpdate: Date.now() };
@@ -205,10 +206,14 @@ function initializeTips(exerciseID, tips = []) {
         const contentNode = document.createElement("p");
         contentNode.className = "mb-1";
         if (isPurchased) {
-            contentNode.innerHTML = tip.content;
+            if (tip.contentIsHTML) {
+                contentNode.innerHTML = tip.content;
+            } else {
+                contentNode.innerText = tip.content;
+            }
             aNode.classList.add("disabled");
         } else {
-            contentNode.innerHTML = `Tipp kaufen für ${getTipPrice(tip.level)} Gold?`;
+            contentNode.innerText = `Tipp kaufen für ${getTipPrice(tip.level)} Gold?`;
         }
         aNode.appendChild(contentNode);
         exerciseTipListEl.appendChild(aNode);
@@ -225,14 +230,18 @@ function buyTip(exerciseID, tipNum) {
     exerciseState.tipsPurchased[tipNum] = true;
     writeExerciseState(exerciseID, exerciseState);
     updateGold(-getTipPrice(tip.level));
-    revealTip(tipNum, tip.content);
+    revealTip(tipNum, tip);
     updatePageVariables();
 }
 
-function revealTip(tipNum, tipContent) {
+function revealTip(tipNum, tip) {
     let currentTipNode = currentTipNodes[tipNum];
     currentTipNode.classList.add("disabled");
-    currentTipNode.children[1].innerHTML = tipContent;
+    if (tip.contentIsHTML) {
+        currentTipNode.children[1].innerHTML = tip.content;
+    } else {
+        currentTipNode.children[1].innerText = tip.content;
+    }
 }
 
 function tipIsPurchased(exerciseID, exerciseState, tipNum) {

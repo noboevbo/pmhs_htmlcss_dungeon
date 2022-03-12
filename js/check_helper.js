@@ -1,11 +1,11 @@
-import { globalVarDoesNotExistMsg, localVarDoesNotExistMsg, isGlobalNotLocalMsg, wrongTypeMsg, stringIsEmptyMsg, isNotConstMsg, elDoesNotExistMsg, elWrongInnerTextMsg, elWrongStyleValueMsg, wrongValueMsg, logCallDoesNotExist, elWrongTagMsg } from './error_messages.js'
+import { globalVarDoesNotExistMsg, localVarDoesNotExistMsg, isGlobalNotLocalMsg, wrongTypeMsg, stringIsEmptyMsg, isNotConstMsg, elDoesNotExistMsg, elWrongInnerTextMsg, elWrongStyleValueMsg, wrongValueMsg, logCallDoesNotExist, elWrongTagMsg, validationErrorPossibleUndefinedObjMsg } from './error_messages.js'
 
 export function getFailResultObj(errorMessage) {
   return {result: false, errorMessage}
 }
 
 export function getSuccessResultObj() {
-  return {result: true, failMessage: null}
+  return {result: true, errorMessage: null}
 }
 
 export function globalVarExists(globalVarName) {
@@ -82,11 +82,11 @@ export function consoleContains(strValue){
 }
 
 /* HTML Element Checks */
-export function elementsExist(elTagName, numOfElements) {
+export function elementsExist(elTagName, numOfElements, allowMoreElements=false) {
   let els = document.getElementsByTagName(elTagName);
-  if (els.length === numOfElements) {
+  if ((allowMoreElements && els.length >= numOfElements) || els.length === numOfElements) {
     return getSuccessResultObj();
-  } 
+  }
   return getFailResultObj(`Es wurde(n) <b>${els.length}</b> <em>${elTagName}</em> Tag(s) gefunden, gefordert sind <b>${numOfElements}</b>.`);
 }
 
@@ -174,6 +174,18 @@ export function listHasMinElements(elName, numElements) {
   return getFailResultObj(`Die Liste ${elName} hat nicht genug Elemente (mindestens: ${numElements}).`)
 }
 
+export function or(resultObjects) {
+  let errorMessage = "";
+  for (let i=0; i<resultObjects.length; i++) {
+    let resultObj = resultObjects[i];
+    if (resultObj.result) {
+      return resultObj;
+    }
+    errorMessage += resultObj.errorMessage + "oder: <br>";
+  }
+  return getFailResultObj(errorMessage);
+}
+
 
 /* Main validation procedure */
 
@@ -183,11 +195,17 @@ export function validate(exerciseID, validationFuncs, beforeSuccess = noop, afte
   let finalResult = true;
   let errorMessages = [];
   for(let i = 0; i < validationFuncs.length; i++) {
-    let resultObj = validationFuncs[i]();
-    if (!resultObj.result) {
+    try {
+      let resultObj = validationFuncs[i]();
+      if (!resultObj.result) {
+        finalResult = false;
+        errorMessages.push(resultObj.errorMessage)
+        // break; // TODO: support breaking and non breaking errors
+      }
+    } catch (e) {
       finalResult = false;
-      errorMessages.push(resultObj.errorMessage)
-      break; // TODO: support breaking and non breaking errors
+      console.log(e);
+      // errorMessages.push(e);
     }
   }
   let exerciseState = window.parent.getExerciseState(exerciseID);
