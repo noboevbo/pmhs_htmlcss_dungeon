@@ -1,13 +1,20 @@
 import { elementIsCorrectTag, elementsExist, or, validate} from '../check_helper.js';
 
-let exerciseID = "05_html_inline_block_elemente";
+let exerciseID = "07_html_tabellen";
 
 let instructions = `
 <ol>
-<li>Erstelle einen neuen Paragraphen mit einem beliebigen Inhalt. Der Paragraph soll die ID <em>auszeichnungen</em> haben.</li>
-<li>Markiere vier Wörter im Paragraphen in dem du jeweils eines kursiv oder fett setzt sowie unterstreichst und durchstreichst. Nutze dafür HTML Textauszeichnungen!</li>
-<li>Füge noch einen manuellen Zeilenumbruch im Paragraphen ein.</li>
-<li>Erstelle eine horizontale Linie unter dem Paragraphen</li>
+<li>Füge eine Formular mit folgendem Inhalt ein.<br><img src="aufgaben/static/formular.png" alt="Beispielformular"></li>
+<li>Nutze die HTML-Element <em>form</em>, <em>label</em> und <em>input</em>. Andere HTML-Elemente werden nicht benötigt!</li>
+<li>Verwende folgende IDs für die HTML-Elemente: <ul>
+<li>Formularfeld Vorname: <em>vorname</em></li>
+<li>Formularfeld Nachname: <em>nachname</em></li>
+<li>Formularfeld Passwort: <em>passwort</em></li>
+<li>Formularfeld Newsletter?: <em>newsletter</em></li>
+<li>Submitbutton: <em>registerbtn</em></li>
+</ul>
+</li>
+<li>Setze die Standardwerte entsprechend den Werten im Screenshot (Passwort: 1234).</li>
 </ol>
 `
 

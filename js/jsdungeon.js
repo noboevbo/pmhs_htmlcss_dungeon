@@ -3,6 +3,13 @@ var exercises = [
     { id: "00_tutorial", name: "Tutorial" },
     { id: "01_html_tags", name: "HTML Tags" },
     { id: "02_html_typo", name: "HTML Typografie" },
+    { id: "03_html_block_elemente", name: "HTML Block-Elemente" },
+    { id: "04_html_inline_elemente", name: "HTML Inline-Elemente" },
+    { id: "05_html_pfade", name: "HTML Pfade" },
+    { id: "06_html_embedded", name: "HTML Embedded Content" },
+    { id: "07_html_tabellen", name: "HTML Tabellen" },
+    { id: "08_html_formulare", name: "HTML Formulare" },
+    { id: "09_html_strukturierung", name: "HTML Strukturierung" },
 ];
 
 const emptyExerciseState = { solved: false, tipsPurchased: [], lastUpdate: Date.now() };

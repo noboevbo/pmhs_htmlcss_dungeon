@@ -4,10 +4,14 @@ let exerciseID = "09_html_strukturierung";
 
 let instructions = `
 <ol>
-<li>Erstelle einen neuen Paragraphen mit einem beliebigen Inhalt. Der Paragraph soll die ID <em>auszeichnungen</em> haben.</li>
-<li>Markiere vier Wörter im Paragraphen in dem du jeweils eines kursiv oder fett setzt sowie unterstreichst und durchstreichst. Nutze dafür HTML Textauszeichnungen!</li>
-<li>Füge noch einen manuellen Zeilenumbruch im Paragraphen ein.</li>
-<li>Erstelle eine horizontale Linie unter dem Paragraphen</li>
+<li>Erstelle eine Website mit folgenden Inhalten. Es sollen semantische HTML5-Tags für die entsprechenden Bereiche verwendet werden!</li>
+<li>Eine Kopfzeile mit einer Überschrift erster Ordnung</li>
+<li>Hauptteil mit folgenden Inhalten: <ol>
+<li>Erster Blogpost mit einer Überschrift zweiter Ordnung sowie einem Paragraphen mit Blindtext.</li>
+<li>Zweiter Blogpost mit einer Überschrift zweiter Ordnung sowie einem Paragraphen mit Blindtext.</li>
+</ol></li>
+<li>Eine Fußzeile in der mit kleinerem Text das Copyright Symbol und dahinter das Jahr sowie ein beliebiger Name steht.</li>
+<li>Tipp: Blindtexte kann man z.B. auf <a href="https://corporatelorem.kovah.de/">https://corporatelorem.kovah.de/</a> finden.</li>
 </ol>
 `
 

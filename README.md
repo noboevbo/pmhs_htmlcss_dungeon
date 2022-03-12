@@ -67,3 +67,6 @@ Datenausgabe
 Dateiformate, Pfadangaben, Adressierung, 
 URL 
 Upload, Download, Datenübertragungsrate 
+
+## Aknowledgments
+shimmer by airtone (c) copyright 2022 Licensed under a Creative Commons Attribution (3.0) license. http://dig.ccmixter.org/files/airtone/64622 

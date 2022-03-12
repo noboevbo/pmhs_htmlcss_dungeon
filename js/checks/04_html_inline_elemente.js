@@ -4,10 +4,7 @@ let exerciseID = "04_html_inline_elemente";
 
 let instructions = `
 <ol>
-<li>Erstelle einen neuen Paragraphen mit einem beliebigen Inhalt. Der Paragraph soll die ID <em>auszeichnungen</em> haben.</li>
-<li>Markiere vier Wörter im Paragraphen in dem du jeweils eines kursiv oder fett setzt sowie unterstreichst und durchstreichst. Nutze dafür HTML Textauszeichnungen!</li>
-<li>Füge noch einen manuellen Zeilenumbruch im Paragraphen ein.</li>
-<li>Erstelle eine horizontale Linie unter dem Paragraphen</li>
+<li>Füge mindestens drei unterschiedliche HTML Inline-Elemente ein.</li>
 </ol>
 `
 

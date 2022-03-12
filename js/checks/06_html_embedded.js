@@ -4,10 +4,9 @@ let exerciseID = "06_html_embedded";
 
 let instructions = `
 <ol>
-<li>Erstelle einen neuen Paragraphen mit einem beliebigen Inhalt. Der Paragraph soll die ID <em>auszeichnungen</em> haben.</li>
-<li>Markiere vier Wörter im Paragraphen in dem du jeweils eines kursiv oder fett setzt sowie unterstreichst und durchstreichst. Nutze dafür HTML Textauszeichnungen!</li>
-<li>Füge noch einen manuellen Zeilenumbruch im Paragraphen ein.</li>
-<li>Erstelle eine horizontale Linie unter dem Paragraphen</li>
+<li>Füge das Video <em>aufgaben/static/sample.mp4</em> über das HTML5 Video-Tag ein.</li>
+<li>Füge die MP3 <em>aufgaben/static/airtone_-_shimmer_1.mp3</em> über das HTML5 Audio-Tag ein.<em>
+<li>Bette ein beliebiges YouTube Video ein.</li>
 </ol>
 `
 
