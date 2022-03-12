@@ -47,14 +47,14 @@ function init() {
     initializeExercises();
     initializeActiveExercise();
 }
-deinitialize();
+// deinitialize();
 window.onload = init;
 
 function deinitialize() {
-    console.log("unload")
-    deinitializeActiveExercise();
+    // console.log("unload")
+    // deinitializeActiveExercise();
 }
-window.onbeforeunload = deinitialize;
+// window.onbeforeunload = deinitialize;
 
 function initializePlayerGold() {
     let playerGold = localStorage.getItem("playerGold");
@@ -100,7 +100,7 @@ function showPlayerName() {
 
 function showPlayerGold() {
     let playerGold = getPlayerGold();
-    playerGoldEl.innerText = `Gold verfügbar: ${playerGold}`;
+    playerGoldEl.innerText = `${playerGold}`;
 }
 
 function initializeExercises() {
@@ -116,9 +116,9 @@ function initializeExercises() {
         linkNode.setAttribute('onclick', `exerciseSelected(${i})`);
         linkNode.href = "#";
         if (exerciseState.solved) {
-            linkNode.innerText = "✅ " + `${i}`.padStart(2, "0") + ": " + exercise.name;
+            linkNode.innerHTML = `<i class="nes-icon trophy is-small"></i> ` + `${i}`.padStart(2, "0") + ": " + exercise.name;
         } else {
-            linkNode.innerText = "❌ " + `${i}`.padStart(2, "0") + ": " + exercise.name;
+            linkNode.innerHTML = `<i class="nes-icon close is-small"></i> ` + `${i}`.padStart(2, "0") + ": " + exercise.name;
         }
         liNode.appendChild(linkNode);
         exerciseListEl.appendChild(liNode);
@@ -143,8 +143,8 @@ function deinitializeActiveExercise() {
 
 function updateExerciseState(exerciseID, exerciseState, errorMessages = []) {
     let linkNode = document.getElementById(exerciseID + "_link");
-    let stateSymbol = exerciseState.solved ? '✅' : '❌';
-    linkNode.innerText = linkNode.innerText.replace(/^.{1}/g, stateSymbol);
+    let stateSymbol = exerciseState.solved ? `<i class="nes-icon trophy is-small"></i>` : `<i class="nes-icon close is-small"></i>`;
+    linkNode.innerHTML = stateSymbol + " " + linkNode.innerText;
     setExperimentState(exerciseState.solved, errorMessages);
 }
 
@@ -160,7 +160,7 @@ function setActiveExercise(exercise) {
     exerciseTipListEl.innerHTML = "";
     selectedExerciseNameEl.innerText = "Aufgabe: " + exercise.name;
     selectedExerciseEl.src = "aufgaben/" + exercise.id + ".html";
-    selectedExerciseEl.contentWindow.location.reload(true);
+    // selectedExerciseEl.contentWindow.location.reload(true);
     // selectedExerciseEl.setAttribute('onload', `injectDungeonCode("${exercise.id}")`);
     updateExerciseState(exercise.id, getExerciseState(exercise.id));
 }
