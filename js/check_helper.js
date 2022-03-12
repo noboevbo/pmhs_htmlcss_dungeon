@@ -124,6 +124,77 @@ export function elementIsCorrectTag(elID, requiredTag) {
   return getSuccessResultObj();
 }
 
+export function linkTargetIsCorrect(elID, target) {
+  let el = document.getElementById(elID);
+  console.log(el.href);
+  if (el.getAttribute("href") === target) {
+    return getSuccessResultObj();
+  }
+  return getFailResultObj(`Das Ziel des Links <em>${el.id}</em> ist nicht korrekt!`);
+}
+
+export function linkContentIsCorrect(elID, content) {
+  let el = document.getElementById(elID);
+  if (el.innerHTML === content) {
+    return getSuccessResultObj();
+  }
+  return getFailResultObj(`Der Inhalt des Links <em>${el.id}</em> ist nicht korrekt!`);
+}
+
+export function elSrcAttributeIs(elID, path) {
+  let el = document.getElementById(elID);
+  if (el.getAttribute("src") === path) {
+    return getSuccessResultObj();
+  }
+  return getFailResultObj(`Der Pfad des Elements <em>${el.id}</em> ist nicht korrekt!`);
+}
+
+export function checkTableContent(elID, tableContent) {
+  // tableContent: Nested List rows->columns
+  let el = document.getElementById(elID);
+  let rows = el.getElementsByTagName("tr");
+  let errors = "";
+  for(let row=0; row < tableContent.length; row++) {
+    let column_descriptions = tableContent[row];
+    let curr_row = rows[row];
+    let columns = curr_row.querySelectorAll('th,td');
+    for(let column=0; column < column_descriptions.length; column++) {
+      let column_description = column_descriptions[column];
+      let column_type = column_description.type;
+      let column_value = column_description.value;
+      let curr_column = columns[column];
+      if (curr_column.tagName.toUpperCase() !== column_type.toUpperCase()) {
+        errors += `Der Zellentyp von Zeile ${row+1} Spalte ${column+1} (Wert: ${column_value}) ist nicht korrekt!<br>`;
+      }
+      if (curr_column.innerText !== column_value) {
+        errors += `Der Wert in Zeile ${row+1} Spalte ${column+1} ist nicht korrekt!<br>`
+      }
+    }
+  }
+  if (errors === "") {
+    return getSuccessResultObj();
+  }
+  return getFailResultObj(errors);
+}
+export function elAttributeValueRegex(elID, attributeName, pattern) {
+  let el = document.getElementById(elID);
+  let myRe = new RegExp(pattern)
+  let attribute = el.attributes[attributeName];
+  if (el && attribute && myRe.exec(attribute.value)) {
+    return getSuccessResultObj();
+  }
+  return getFailResultObj(`Der Pfad des Elements <em>${el.id}</em> ist nicht korrekt!`);
+}
+
+export function elCheckAttributeValue(elID, attributeName, value) {
+  let el = document.getElementById(elID);
+  let attribute = el.attributes[attributeName];
+  if (attribute && attribute.value === value) {
+    return getSuccessResultObj();
+  }
+  return getFailResultObj(`Das Attribut ${attributeName} des HTML-Elements ${elID} hat den falschen Wert!`);
+}
+
 // export function elementInnerHTMLCorrect(el, elName, requiredContent) {
 //   if (el.innerHTML === requiredContent) {
 //     return getSuccessResultObj();
@@ -140,6 +211,22 @@ export function hasCorrectStyleValue(elName, styleName, styleValue) {
     return getFailResultObj(elWrongStyleValueMsg(elName, styleName, styleValue));
   }
   return getSuccessResultObj();
+}
+
+export function hasMinBlockOrInlineElements(minNumElements, inline = false) {
+  let els = document.body.getElementsByTagName("*");
+  let count = 0;
+  for(let i=0; i<els.length; i++) {
+    let el = els[i];
+    let isBlock = window.getComputedStyle(el, null).display === "block";
+    if ((!inline && isBlock) || (inline && !isBlock)) {
+      count += 1;
+    }
+    if (count >= minNumElements) {
+      return getSuccessResultObj();
+    }
+  }
+  return getFailResultObj(`Es sind erst ${count} von ${minNumElements} ${inline ? "Inline" : "Block"}-Elemente vorhanden!`)
 }
 
 export function isBlockElement(elName) {
@@ -181,7 +268,7 @@ export function or(resultObjects) {
     if (resultObj.result) {
       return resultObj;
     }
-    errorMessage += resultObj.errorMessage + "oder: <br>";
+    errorMessage += resultObj.errorMessage + " oder: <br>";
   }
   return getFailResultObj(errorMessage);
 }

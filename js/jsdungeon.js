@@ -44,7 +44,6 @@ function init() {
     updatePageVariables();
     initializeExercises();
     initializeActiveExercise();
-
 }
 
 window.onload = init;

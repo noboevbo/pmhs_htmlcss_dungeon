@@ -1,13 +1,10 @@
-import { elementIsCorrectTag, elementsExist, or, validate} from '../check_helper.js';
+import { hasMinBlockOrInlineElements, validate} from '../check_helper.js';
 
-let exerciseID = "02_html_typo";
+let exerciseID = "03_html_block_elemente";
 
 let instructions = `
 <ol>
-<li>Erstelle einen neuen Paragraphen mit einem beliebigen Inhalt. Der Paragraph soll die ID <em>auszeichnungen</em> haben.</li>
-<li>Markiere vier Wörter im Paragraphen in dem du jeweils eines kursiv oder fett setzt sowie unterstreichst und durchstreichst. Nutze dafür HTML Textauszeichnungen!</li>
-<li>Füge noch einen manuellen Zeilenumbruch im Paragraphen ein.</li>
-<li>Erstelle eine horizontale Linie unter dem Paragraphen</li>
+<li>Füge mindestens drei unterschiedliche HTML Block-Elemente ein.</li>
 </ol>
 `
 
@@ -21,14 +18,7 @@ let tips = [
 ]
 
 let validationFuncs = [
-  function() { return elementIsCorrectTag("auszeichnungen", "p"); },
-  function() { return elementsExist("strong", 1, true); },
-  function() { return or([elementsExist("em", 1, true), elementsExist("i", 1, true)]); },
-  function() { return or([elementsExist("strong", 1, true), elementsExist("b", 1, true)]); },
-  function() { return elementsExist("u", 1, true) },
-  function() { return elementsExist("del", 1, true) },
-  function() { return elementsExist("br", 1, true); },
-  function() { return elementsExist("hr", 1, true); },
+  function() { return hasMinBlockOrInlineElements(3, false); },
 ]
 
 window.onload = function() { 

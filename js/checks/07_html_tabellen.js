@@ -1,10 +1,11 @@
-import { elementIsCorrectTag, elementsExist, or, validate} from '../check_helper.js';
+import { elementIsCorrectTag, elementsExist, checkTableContent, or, validate} from '../check_helper.js';
 
 let exerciseID = "07_html_tabellen";
 
+
 let instructions = `
 <ol>
-<li>Füge eine Tabelle mit folgendem Inhalt ein. Nutze für die erste Zeile header-Zellen! <br><img src="aufgaben/static/tabelle.png" alt="Beispieltabelle"></li>
+<li>Füge eine Tabelle mit folgendem Inhalt ein. Nutze für die erste Zeile header-Zellen! Das Tabellen-Element soll die id <em>tabelle1</em> haben. <br><img src="aufgaben/static/tabelle.png" alt="Beispieltabelle"></li>
 </ol>
 `
 
@@ -17,15 +18,15 @@ let tips = [
   </xmp>`, contentIsHTML: true}
 ]
 
+let tableContent = [
+  [{value: "Schüler", type: "th"}, {value: "Alter", type: "th"}, {value: "Note", type: "th"}],
+  [{value: "Alice", type: "td"}, {value: "17", type: "td"}, {value: "3", type: "td"}],
+  [{value: "Bob", type: "td"}, {value: "19", type: "td"}, {value: "2", type: "td"}],
+  [{value: "Eve", type: "td"}, {value: "18", type: "td"}, {value: "1", type: "td"}]]
+
 let validationFuncs = [
-  function() { return elementIsCorrectTag("auszeichnungen", "p"); },
-  function() { return elementsExist("strong", 1, true); },
-  function() { return or([elementsExist("em", 1, true), elementsExist("i", 1, true)]); },
-  function() { return or([elementsExist("strong", 1, true), elementsExist("b", 1, true)]); },
-  function() { return elementsExist("u", 1, true) },
-  function() { return elementsExist("del", 1, true) },
-  function() { return elementsExist("br", 1, true); },
-  function() { return elementsExist("hr", 1, true); },
+  function() { return elementIsCorrectTag("tabelle1", "table"); },
+  function() { return checkTableContent("tabelle1", tableContent); },
 ]
 
 window.onload = function() { 

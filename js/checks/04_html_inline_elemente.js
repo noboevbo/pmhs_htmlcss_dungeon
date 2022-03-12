@@ -1,4 +1,4 @@
-import { elementIsCorrectTag, elementsExist, or, validate} from '../check_helper.js';
+import { hasMinBlockOrInlineElements, validate} from '../check_helper.js';
 
 let exerciseID = "04_html_inline_elemente";
 
@@ -18,14 +18,7 @@ let tips = [
 ]
 
 let validationFuncs = [
-  function() { return elementIsCorrectTag("auszeichnungen", "p"); },
-  function() { return elementsExist("strong", 1, true); },
-  function() { return or([elementsExist("em", 1, true), elementsExist("i", 1, true)]); },
-  function() { return or([elementsExist("strong", 1, true), elementsExist("b", 1, true)]); },
-  function() { return elementsExist("u", 1, true) },
-  function() { return elementsExist("del", 1, true) },
-  function() { return elementsExist("br", 1, true); },
-  function() { return elementsExist("hr", 1, true); },
+  function() { return hasMinBlockOrInlineElements(3, true); },
 ]
 
 window.onload = function() { 
