@@ -82,12 +82,13 @@ export function consoleContains(strValue){
 }
 
 /* HTML Element Checks */
-export function elementsExist(elTagName, numOfElements, allowMoreElements=false) {
-  let els = document.getElementsByTagName(elTagName);
+export function elementsExist(elTagName, numOfElements, allowMoreElements=false, inEl=null) {
+  let els = inEl ? inEl.getElementsByTagName(elTagName) : document.getElementsByTagName(elTagName);
   if ((allowMoreElements && els.length >= numOfElements) || els.length === numOfElements) {
     return getSuccessResultObj();
   }
-  return getFailResultObj(`Es wurde(n) <b>${els.length}</b> <em>${elTagName}</em> Tag(s) gefunden, gefordert sind <b>${numOfElements}</b>.`);
+  let searchedIn = inEl ? (inEl.id ? inEl.id : inEl.tagName) : "document";
+  return getFailResultObj(`In ${searchedIn} wurde(n) <b>${els.length}</b> <em>${elTagName}</em> Tag(s) gefunden, gefordert sind <b>${numOfElements}</b>.`);
 }
 
 
@@ -122,6 +123,14 @@ export function elementIsCorrectTag(elID, requiredTag) {
     return getFailResultObj(elWrongTagMsg(elID, el.tagName, requiredTag));
   }
   return getSuccessResultObj();
+}
+
+export function elementIsChildOf(elID, parentID) {
+  let el = document.getElementById(elID);
+  if (el.parentElement && el.parentElement.id === parentID) {
+    return getSuccessResultObj();
+  } 
+  return getFailResultObj(`Das Element ${elID} ist kein Kindelement von ${parentID}.`);
 }
 
 export function linkTargetIsCorrect(elID, target) {
