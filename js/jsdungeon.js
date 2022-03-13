@@ -36,6 +36,7 @@ var exerciseResultEl = document.getElementById("exerciseResult");
 var exerciseResultHeaderEl = document.getElementById("exerciseResultHeader");
 var exerciseResultMessageListEl = document.getElementById("exerciseResultMessageList");
 var exerciseTipListEl = document.getElementById("exerciseTips");
+var mainFooterEl = document.getElementById("mainFooter");
 var currentTips = []
 var currentTipNodes = []
 
@@ -214,36 +215,64 @@ function initializeTips(exerciseID, tips = []) {
     for (let i = 0; i < tips.length; i++) {
         let tip = tips[i]
         let isPurchased = tipIsPurchased(exerciseID, exerciseState, i);
-        const aNode = document.createElement("a");
-        aNode.href = "#";
-        aNode.className = tipItemClasses;
-        aNode.setAttribute('onclick', `buyTip("${exerciseID}", ${i})`);
-        const titleDiv = document.createElement("div");
-        titleDiv.className = tipTitleClasses;
-        const h5Node = document.createElement("h5");
-        h5Node.className = "mb1";
-        h5Node.innerHTML = `Tipp ${i+1}`;
-        const titleSmallNode = document.createElement("small");
-        titleSmallNode.innerText = tip.title;
-        titleDiv.appendChild(h5Node);
-        titleDiv.appendChild(titleSmallNode);
-        aNode.appendChild(titleDiv);
-        const contentNode = document.createElement("p");
-        contentNode.className = "mb-1";
+        aNode = getTipButtonElement(exerciseID, i, getTipPrice(tip.level), tip.title)
+        let dialog = getTipDialogElement(exerciseID, i, tip.content);
+        mainFooterEl.appendChild(dialog);
         if (isPurchased) {
-            if (tip.contentIsHTML) {
-                contentNode.innerHTML = tip.content;
-            } else {
-                contentNode.innerText = tip.content;
-            }
-            aNode.classList.add("disabled");
-        } else {
-            contentNode.innerText = `Tipp kaufen für ${getTipPrice(tip.level)} Gold?`;
+            setTipPurchasedState(aNode, i);
         }
-        aNode.appendChild(contentNode);
-        exerciseTipListEl.appendChild(aNode);
+        exerciseTipListEl.appendChild(aNode.buttonEl);
         currentTipNodes.push(aNode);
     }
+}
+
+function getTipButtonElement(exerciseID, tipID, tipCost, tipTitle) {
+    const buttonEl = document.createElement("button");
+    buttonEl.setAttribute("type", "button");
+    buttonEl.id = tipID;
+    buttonEl.className = "nes-btn is-warning tooltip";
+    buttonEl.setAttribute("onclick", `buyTip("${exerciseID}", ${tipID})`);
+    const buttonTextEl = document.createElement("span");
+    buttonTextEl.innerHTML = `Tipp ${tipID+1} (<i class="nes-icon coin is-small"></i> ${tipCost}g)`;
+    const tooltipSpanEl = document.createElement("span");
+    tooltipSpanEl.className = "tooltiptext";
+    const tooltipPEl = document.createElement("p");
+    tooltipPEl.className = "nes-balloon from-left nes-pointer tooltip-content";
+    tooltipPEl.innerHTML = tipTitle;
+    tooltipSpanEl.appendChild(tooltipPEl);
+    buttonEl.appendChild(buttonTextEl);
+    buttonEl.appendChild(tooltipSpanEl);
+    return {buttonEl, buttonTextEl, tooltipSpanEl, tooltipPEl};
+}
+
+function getTipDialogElement(exerciseID, tipID, tipContent) {
+    const dialogEl = document.createElement("dialog");
+    dialogEl.id = `dialog-tip${tipID}`;
+    dialogEl.className = "nes-dialog is-rounded";
+    const formEl = document.createElement("form");
+    formEl.method = "dialog";
+    const titleEl = document.createElement("h1");
+    titleEl.class = "title";
+    titleEl.innerText = `Tipp ${tipID+1}`;
+    const contentEl = document.createElement("p");
+    contentEl.innerHTML = tipContent;
+    const menuEl = document.createElement("menu");
+    menuEl.className = "dialog-menu";
+    const okButtonEl = document.createElement("button");
+    okButtonEl.className="nes-btn is-primary";
+    okButtonEl.innerText = "Ok";
+    menuEl.appendChild(okButtonEl);
+    formEl.appendChild(titleEl);
+    formEl.appendChild(contentEl);
+    formEl.appendChild(menuEl);
+    dialogEl.appendChild(formEl);
+    return dialogEl;
+}
+
+function setTipPurchasedState(button, tipID) {
+    button.buttonEl.className = "nes-btn is-success tooltip";
+    button.buttonEl.setAttribute("onclick", `document.getElementById('dialog-tip${tipID}').showModal();`);
+    button.buttonTextEl.innerHTML = `Tipp ${tipID}`;
 }
 
 function buyTip(exerciseID, tipNum) {
@@ -261,12 +290,7 @@ function buyTip(exerciseID, tipNum) {
 
 function revealTip(tipNum, tip) {
     let currentTipNode = currentTipNodes[tipNum];
-    currentTipNode.classList.add("disabled");
-    if (tip.contentIsHTML) {
-        currentTipNode.children[1].innerHTML = tip.content;
-    } else {
-        currentTipNode.children[1].innerText = tip.content;
-    }
+    setTipPurchasedState(currentTipNode, tipNum);
 }
 
 function tipIsPurchased(exerciseID, exerciseState, tipNum) {

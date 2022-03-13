@@ -59,24 +59,13 @@
         <ul id="exerciseResultMessageList" class="list-group">
         </ul>
       </div>
-      <h4>Tipps</h4>
-
-      <ul id="exerciseTips" class="list-group">
-        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">Tipp 1</h5>
-            <small>Globale Variable anlegen</small>
-          </div>
-          <p id="tippContent" class="mb-1"></p>
-          <small id="buyTippText">Nicht freigeschaltet. Für 10 Gold kaufen</small>
-        </a>
-      </ul>
     </aside>
     </main>
   </div>
-  <footer class="main-footer">
+  <footer id="mainFooter" class="main-footer">
     <div class="nes-container is-rounded is-dark main-footer-content">
-        <button type="button" class="nes-btn is-warning tooltip" onclick="document.getElementById('dialog-tipp1').showModal();">
+      <div id="exerciseTips" class="exercise-tips">
+        <!-- <button type="button" class="nes-btn is-warning tooltip" onclick="document.getElementById('dialog-tipp1').showModal();">
           Tipp 1 (<i class="nes-icon coin is-small"></i> 10g)
           <span class="tooltiptext">
             <p class="nes-balloon from-left nes-pointer tooltip-content">
@@ -87,7 +76,7 @@
             </p>
           </span>
         </button>
-        <button type="button" class="nes-btn is-warning tooltip" onclick="document.getElementById('dialog-tipp2').showModal();">
+        <button type="button" class="nes-btn is-warning tooltip" onclick="document.getElementById('dialog-tip2').showModal();">
           Tipp 2 (<i class="nes-icon coin is-small"></i> 25g)
           <span class="tooltiptext">
             <p class="nes-balloon from-left nes-pointer tooltip-content">
@@ -95,16 +84,17 @@
             </p>
           </span>
         </button>
-        <button type="button" class="nes-btn is-warning tooltip" onclick="document.getElementById('dialog-tipp2').showModal();">
+        <button type="button" class="nes-btn is-warning tooltip" onclick="document.getElementById('dialog-tip2').showModal();">
           Tipp 3 (<i class="nes-icon coin is-small"></i> 50g)
           <span class="tooltiptext">
             <p class="nes-balloon from-left nes-pointer tooltip-content">
               Blablablubububu
             </p>
           </span>
-        </button>
+        </button> -->
+      </div>
     </div>
-    <dialog class="nes-dialog is-rounded" id="dialog-tipp1">
+    <!-- <dialog class="nes-dialog is-rounded" id="dialog-tip1">
       <form method="dialog">
         <p class="title">Die Lösung lautet:</p>
         <xmp style="width: 900px; white-space: pre-wrap ">
@@ -120,7 +110,7 @@
         </menu>
       </form>
     </dialog>
-    <dialog class="nes-dialog is-rounded" id="dialog-tipp2">
+    <dialog class="nes-dialog is-rounded" id="dialog-tip2">
       <form method="dialog">
         <p class="title">Die Lösung lautet:</p>
         <p>Hi</p>
@@ -128,7 +118,7 @@
           <button class="nes-btn is-primary">Ok</button>
         </menu>
       </form>
-    </dialog>
+    </dialog> -->
   </footer>
 
 

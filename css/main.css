@@ -75,7 +75,7 @@ header, nav, h1, h2, h3, h4, h5, h6 {
   position: fixed;
   left: 0;
   bottom: 0;
-  /* height: 65px; */
+  /* height: 101px; */
   width: 100%;
   background-color: black;
   /* color: white; */
@@ -84,8 +84,9 @@ header, nav, h1, h2, h3, h4, h5, h6 {
 }
 
 .main-footer-content {
+  height: 101px;
   display: grid;
-  grid-template-columns: 225px 225px 225px 1fr;
+  grid-template-columns: 2fr 1fr;
 }
 
 .content, .side, .main-nav {
@@ -149,6 +150,11 @@ header, nav, h1, h2, h3, h4, h5, h6 {
 
 }
 
+.exercise-tips {
+  display: grid;
+  grid-template-columns: 225px 225px 225px;
+}
+
 .exercise-section {
   margin-top: 15px;
 }
@@ -167,11 +173,9 @@ header, nav, h1, h2, h3, h4, h5, h6 {
 .tooltip .tooltiptext {
   visibility: hidden;
   color: black;
-  /* overflow: visible; */
-  bottom: 32px;
-  margin-left: -25px; /* Use half of the width (120/2 = 60), to center the tooltip */
-  /* max-width: 500px; */
-  /* Position the tooltip */
+  pointer-events: none;
+  bottom: 25px;
+  margin-left: -165px;
   position: absolute;
   z-index: 1;
 }
