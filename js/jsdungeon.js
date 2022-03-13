@@ -51,8 +51,8 @@ function init() {
 window.onload = init;
 
 function deinitialize() {
-    // console.log("unload")
-    // deinitializeActiveExercise();
+    console.log("unload")
+    deinitializeActiveExercise();
 }
 // window.onbeforeunload = deinitialize;
 

@@ -34,56 +34,103 @@
     <!-- Inhalt der Seite -->
     <main class="content">
       <section>
-      <h1 class="title" id="selectedExerciseName">Wähle ein Level aus der Navigation auf der linken Seite. Starte am besten
-        mit dem Tutorial und gehe dann der
-        Reihe nach vor!</h1>
-      <div class="nes-container is-rounded with-title">
-        <div class="title">Auftrag</div>
-        <div id="selectedExerciseInstructions"></div>
-      </div>
-    </section>
-    <section class="exercise-section">
-      <div class="exercise-container nes-container is-rounded with-title">
-        <p class="title">Ergebnis</p>
-        <iframe id="selectedExercise" class="exercise-frame"></iframe>
-      </div>
-    </section>
-    </main>
-      <aside class="side">
-        <h4>Status</h4>
-        <div id="exerciseResult">
-          <h4 id="exerciseResultHeader"></h4>
-          <ul id="exerciseResultMessageList" class="list-group">
-          </ul>
+        <h1 class="title" id="selectedExerciseName">Wähle ein Level aus der Navigation auf der linken Seite. Starte am
+          besten
+          mit dem Tutorial und gehe dann der
+          Reihe nach vor!</h1>
+        <div class="nes-container is-rounded with-title">
+          <div class="title">Auftrag</div>
+          <div id="selectedExerciseInstructions"></div>
         </div>
-        <h4>Tipps</h4>
-        <button type="button" class="nes-btn is-primary" onclick="document.getElementById('dialog-default').showModal();">
-          Open dialog
-        </button>
-        <dialog class="nes-dialog" id="dialog-default">
-          <form method="dialog">
-            <p class="title">Dialog</p>
-            <p>Alert: this is a dialog.</p>
-            <menu class="dialog-menu">
-              <button class="nes-btn">Cancel</button>
-              <button class="nes-btn is-primary">Confirm</button>
-            </menu>
-          </form>
-        </dialog>
-        <ul id="exerciseTips" class="list-group">
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Tipp 1</h5>
-              <small>Globale Variable anlegen</small>
-            </div>
-            <p id="tippContent" class="mb-1"></p>
-            <small id="buyTippText">Nicht freigeschaltet. Für 10 Gold kaufen</small>
-          </a>
-        </ul>
-      </aside>
+      </section>
+      <section class="exercise-section">
+        <div class="nes-container is-rounded with-title">
+          <p class="title">Ergebnis</p>
+          <div class="exercise-container ">
+            <iframe id="selectedExercise" class="exercise-frame"></iframe>
+          </div>
+        </div>
+      </section>
     </main>
-    <footer class="main-footer">The footer</footer>
+    <aside class="side">
+      <h4>Status</h4>
+      <div id="exerciseResult">
+        <h4 id="exerciseResultHeader"></h4>
+        <ul id="exerciseResultMessageList" class="list-group">
+        </ul>
+      </div>
+      <h4>Tipps</h4>
+
+      <ul id="exerciseTips" class="list-group">
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Tipp 1</h5>
+            <small>Globale Variable anlegen</small>
+          </div>
+          <p id="tippContent" class="mb-1"></p>
+          <small id="buyTippText">Nicht freigeschaltet. Für 10 Gold kaufen</small>
+        </a>
+      </ul>
+    </aside>
+    </main>
   </div>
+  <footer class="main-footer">
+    <div class="nes-container is-rounded is-dark main-footer-content">
+        <button type="button" class="nes-btn is-warning tooltip" onclick="document.getElementById('dialog-tipp1').showModal();">
+          Tipp 1 (<i class="nes-icon coin is-small"></i> 10g)
+          <span class="tooltiptext">
+            <p class="nes-balloon from-left nes-pointer tooltip-content">
+              This is not a clickable element, but it's an area of the pointer. Längerer Text blablablablab
+              blablablabl
+              ablablab<br>
+              blablab
+            </p>
+          </span>
+        </button>
+        <button type="button" class="nes-btn is-warning tooltip" onclick="document.getElementById('dialog-tipp2').showModal();">
+          Tipp 2 (<i class="nes-icon coin is-small"></i> 25g)
+          <span class="tooltiptext">
+            <p class="nes-balloon from-left nes-pointer tooltip-content">
+              Blablablubububu
+            </p>
+          </span>
+        </button>
+        <button type="button" class="nes-btn is-warning tooltip" onclick="document.getElementById('dialog-tipp2').showModal();">
+          Tipp 3 (<i class="nes-icon coin is-small"></i> 50g)
+          <span class="tooltiptext">
+            <p class="nes-balloon from-left nes-pointer tooltip-content">
+              Blablablubububu
+            </p>
+          </span>
+        </button>
+    </div>
+    <dialog class="nes-dialog is-rounded" id="dialog-tipp1">
+      <form method="dialog">
+        <p class="title">Die Lösung lautet:</p>
+        <xmp style="width: 900px; white-space: pre-wrap ">
+          <video id="video1" src="static/sample.mp4" width="100%" controls></video>
+          <audio id="audio1" src="static/airtone_-_shimmer_1.mp3" controls></audio>
+          <iframe id="youtube1" width="560" height="315" src="https://www.youtube-nocookie.com/embed/nra1yvVlZwA"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </xmp>
+        <menu class="dialog-menu">
+          <button class="nes-btn is-primary">Ok</button>
+        </menu>
+      </form>
+    </dialog>
+    <dialog class="nes-dialog is-rounded" id="dialog-tipp2">
+      <form method="dialog">
+        <p class="title">Die Lösung lautet:</p>
+        <p>Hi</p>
+        <menu class="dialog-menu">
+          <button class="nes-btn is-primary">Ok</button>
+        </menu>
+      </form>
+    </dialog>
+  </footer>
+
 
   <script src="js/jsdungeon.js"></script>
   <!-- <script src="js/bootstrap.bundle.min.js"></script> -->
