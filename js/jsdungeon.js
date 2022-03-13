@@ -36,7 +36,7 @@ var exerciseResultEl = document.getElementById("exerciseResult");
 var exerciseResultHeaderEl = document.getElementById("exerciseResultHeader");
 var exerciseResultMessageListEl = document.getElementById("exerciseResultMessageList");
 var exerciseTipListEl = document.getElementById("exerciseTips");
-var mainFooterEl = document.getElementById("mainFooter");
+var dialogWrapperEl = document.getElementById("dialogWrapper");
 var currentTips = []
 var currentTipNodes = []
 
@@ -215,13 +215,14 @@ function initializeTips(exerciseID, tips = []) {
     console.log("Init tipps");
     currentTips = tips;
     currentTipNodes = [];
+    dialogWrapperEl.innerHTML = ""; // Reset dialogs
     let exerciseState = getExerciseState(exerciseID);
     for (let i = 0; i < tips.length; i++) {
         let tip = tips[i]
         let isPurchased = tipIsPurchased(exerciseID, exerciseState, i);
         aNode = getTipButtonElement(exerciseID, i, getTipPrice(tip.level), tip.title)
         let dialog = getTipDialogElement(exerciseID, i, tip);
-        mainFooterEl.appendChild(dialog);
+        dialogWrapperEl.appendChild(dialog);
         if (isPurchased) {
             setTipPurchasedState(aNode, i);
         }
@@ -294,7 +295,7 @@ function getTipDialogElement(exerciseID, tipID, tip) {
 function setTipPurchasedState(button, tipID) {
     button.buttonEl.className = "nes-btn is-success tooltip";
     button.buttonEl.setAttribute("onclick", `document.getElementById('dialog-tip${tipID}').showModal();`);
-    button.buttonTextEl.innerHTML = `Tipp ${tipID}`;
+    button.buttonTextEl.innerHTML = `Tipp ${tipID+1}`;
 }
 
 function buyTip(exerciseID, tipNum) {
@@ -326,6 +327,8 @@ function tipIsPurchased(exerciseID, exerciseState, tipNum) {
 
 function getTipPrice(tipLevel) {
     switch (tipLevel) {
+        case 0:
+            return 0;
         case 1:
             return 10;
         case 2:
