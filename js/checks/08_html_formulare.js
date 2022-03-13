@@ -56,11 +56,13 @@ let validationFuncs = [
   function() { return elementIsChildOf("registerbtn", "formular1"); },
 ]
 
-window.onload = function() { 
+window.onload = init;
+
+function init() {
   window.parent.initializeInstructions(exerciseID, instructions);
   window.parent.initializeTips(exerciseID, tips);
   validate(exerciseID, validationFuncs);
-};
+}
 // Tests
     // var spielername = "Hans";
     // let spielername = "Hans";

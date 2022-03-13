@@ -161,14 +161,16 @@ function setActiveExercise(exercise) {
     exerciseTipListEl.innerHTML = "";
     selectedExerciseNameEl.innerText = "Aufgabe: " + exercise.name;
     selectedExerciseEl.src = "aufgaben/" + exercise.id + ".html";
-    // selectedExerciseEl.contentWindow.location.reload(true);
     // selectedExerciseEl.setAttribute('onload', `injectDungeonCode("${exercise.id}")`);
+    // selectedExerciseEl.contentWindow.location.reload();
+    // selectedExerciseEl.contentWindow.init();
     updateExerciseState(exercise.id, getExerciseState(exercise.id));
 }
 
 // function injectDungeonCode(exerciseID) {
-//     const iframeWin = selectedExerciseEl.contentWindow || iframe;
-//     const iframeDoc = selectedExerciseEl.contentDocument || iframeWin.document;
+//     console.log("here");
+//     const iframeWin = selectedExerciseEl.contentWindow;
+//     const iframeDoc = selectedExerciseEl.contentDocument;
 
 //     var script = iframeDoc.createElement("script");
 //     script.type = "module";
@@ -178,16 +180,17 @@ function setActiveExercise(exercise) {
 //     var bootstrapscript = iframeDoc.createElement("script");
 //     bootstrapscript.src = "../js/bootstrap.bundle.min.js";
 //     iframeDoc.body.appendChild(bootstrapscript);
+//     console.log("injected");
 // }
 
 function setExperimentState(isSolved, messages = []) {
     exerciseResultMessageListEl.innerHTML = "";
     if (isSolved) {
         exerciseResultEl.className = "alert alert-success";
-        exerciseResultHeaderEl.innerText = "Aufgabe korrekt gelöst!";
+        exerciseResultHeaderEl.innerHTML = `<span class="nes-text is-success">Aufgabe korrekt gelöst!</span>`;
     } else {
         exerciseResultEl.className = "alert alert-danger";
-        exerciseResultHeaderEl.innerText = "Aufgabe noch nicht korrekt gelöst!";
+        exerciseResultHeaderEl.innerHTML = `<span class="nes-text is-error">Aufgabe noch nicht korrekt gelöst!</span>`;
     }
     for (let i = 0; i < messages.length; i++) {
         exerciseResultMessageListEl.appendChild(getResultMessageListItem(messages[i]))
@@ -209,6 +212,7 @@ const tipItemClasses = "list-group-item list-group-item-action flex-column align
 const tipTitleClasses = "d-flex w-100 justify-content-between"
 
 function initializeTips(exerciseID, tips = []) {
+    console.log("Init tipps");
     currentTips = tips;
     currentTipNodes = [];
     let exerciseState = getExerciseState(exerciseID);
@@ -216,7 +220,7 @@ function initializeTips(exerciseID, tips = []) {
         let tip = tips[i]
         let isPurchased = tipIsPurchased(exerciseID, exerciseState, i);
         aNode = getTipButtonElement(exerciseID, i, getTipPrice(tip.level), tip.title)
-        let dialog = getTipDialogElement(exerciseID, i, tip.content);
+        let dialog = getTipDialogElement(exerciseID, i, tip);
         mainFooterEl.appendChild(dialog);
         if (isPurchased) {
             setTipPurchasedState(aNode, i);
@@ -245,7 +249,7 @@ function getTipButtonElement(exerciseID, tipID, tipCost, tipTitle) {
     return {buttonEl, buttonTextEl, tooltipSpanEl, tooltipPEl};
 }
 
-function getTipDialogElement(exerciseID, tipID, tipContent) {
+function getTipDialogElement(exerciseID, tipID, tip) {
     const dialogEl = document.createElement("dialog");
     dialogEl.id = `dialog-tip${tipID}`;
     dialogEl.className = "nes-dialog is-rounded";
@@ -254,16 +258,34 @@ function getTipDialogElement(exerciseID, tipID, tipContent) {
     const titleEl = document.createElement("h1");
     titleEl.class = "title";
     titleEl.innerText = `Tipp ${tipID+1}`;
+    formEl.appendChild(titleEl);
     const contentEl = document.createElement("p");
-    contentEl.innerHTML = tipContent;
+    if (tip.contentIsHTML) {
+        contentEl.innerHTML = tip.content;
+    } else {
+        contentEl.innerText = tip.content;
+    }
+    formEl.appendChild(contentEl);
+    if (tip.weblinks && tip.weblinks.length > 0) {
+        const linkTitleEl = document.createElement("h2");
+        linkTitleEl.innerText = "Weiterführende Links";
+        formEl.appendChild(linkTitleEl);
+        for(let i=0; i<tip.weblinks.length; i++) {
+            let link = tip.weblinks[i];
+            const linkEl = document.createElement("a");
+            linkEl.setAttribute("href", link);
+            linkEl.setAttribute("target", "_blank")
+            linkEl.innerText = link;
+            formEl.appendChild(linkEl);
+        }
+    }
     const menuEl = document.createElement("menu");
     menuEl.className = "dialog-menu";
     const okButtonEl = document.createElement("button");
     okButtonEl.className="nes-btn is-primary";
     okButtonEl.innerText = "Ok";
     menuEl.appendChild(okButtonEl);
-    formEl.appendChild(titleEl);
-    formEl.appendChild(contentEl);
+
     formEl.appendChild(menuEl);
     dialogEl.appendChild(formEl);
     return dialogEl;
