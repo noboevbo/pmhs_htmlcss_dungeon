@@ -10,9 +10,9 @@ let instructions = `
 `
 
 let tips = [
-  {level: 1, title: "Texte im Paragraphen markieren.", content: "Innerhalb eines Paragraphen können unterschiedliche Auszeichnungen verwendet werden, bsp. <p>Das ist ein <strong>Text</strong></p>. Unter dem Link findest du weitere Auszeichnungsmöglichkeiten.", weblinks: ["https://wiki.selfhtml.org/wiki/HTML/Tutorials/HTML5/Textauszeichnung"]},
-  {level: 1, title: "Zeilenumbruch im Paragraphen verwenden.", content: "Paragraphen können beliebigen HTML Code enthalten, entsprechend kannst du einfach im Text innerhalb des Paragraphen einen Zeilenumbruch (<br>) Einsetzen.", weblinks: ["https://www.w3schools.com/html/html_paragraphs.asp"]},
-  {level: 2, title: "Lösung anzeigen", content: `Die Lösung ist: <xmp>
+  {level: 1, title: "Video: Tabellen in HTML", content: `<iframe width="560" height="315" src="https://www.youtube.com/embed/3_dMtz73tUk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe`, weblinks: ["https://wiki.selfhtml.org/wiki/HTML/Tabellen"], contentIsHTML: true},
+  {level: 1, title: "HTML-Element: <table>.", content: "Eine Tabelle wird mit dem <table>-Tag begonnen. In diesem Tag nutzt man dann Zeilen (<tr>-Tag) und in den Zeilen Spaltenelemente (<th>-Tag für Überschriften und <td>-Tag für Datenzellen). Dabei steht tr für tablerow, th für tablehead und td für tabledata. Mehr Infos findest du unter dem Link unten.", weblinks: ["https://wiki.selfhtml.org/wiki/HTML/Tabellen"]},
+  {level: 3, title: "Lösung anzeigen", content: `Die Lösung ist: <xmp>
   <table id="tabelle1">
     <tr>
       <th>Schüler</th>

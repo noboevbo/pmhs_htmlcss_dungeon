@@ -22,7 +22,7 @@ let instructions = `
 let tips = [
   {level: 1, title: "Texte im Paragraphen markieren.", content: "Innerhalb eines Paragraphen können unterschiedliche Auszeichnungen verwendet werden, bsp. <p>Das ist ein <strong>Text</strong></p>. Unter dem Link findest du weitere Auszeichnungsmöglichkeiten.", weblinks: ["https://wiki.selfhtml.org/wiki/HTML/Tutorials/HTML5/Textauszeichnung"]},
   {level: 1, title: "Zeilenumbruch im Paragraphen verwenden.", content: "Paragraphen können beliebigen HTML Code enthalten, entsprechend kannst du einfach im Text innerhalb des Paragraphen einen Zeilenumbruch (<br>) Einsetzen.", weblinks: ["https://www.w3schools.com/html/html_paragraphs.asp"]},
-  {level: 2, title: "Lösung anzeigen", content: `Die Lösung ist: <xmp>
+  {level: 3, title: "Lösung anzeigen", content: `Die Lösung ist: <xmp>
   <form id="formular1">
     <label for="vorname">Vorname:</label><br>
     <input type="text" id="vorname" name="vorname" value="Eve"><br>

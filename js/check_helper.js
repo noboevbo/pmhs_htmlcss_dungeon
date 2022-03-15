@@ -227,6 +227,9 @@ export function hasMinBlockOrInlineElements(minNumElements, inline = false) {
   let count = 0;
   for(let i=0; i<els.length; i++) {
     let el = els[i];
+    if (el.tagName.toUpperCase() === "SCRIPT") {
+      continue;
+    }
     let isBlock = window.getComputedStyle(el, null).display === "block";
     if ((!inline && isBlock) || (inline && !isBlock)) {
       count += 1;

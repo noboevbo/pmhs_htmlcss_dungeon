@@ -11,7 +11,7 @@ let validationFuncs = [
 ]
 
 let tips = [
-    {level: 0, title: "Beispieltipp - kauf mich!", content: `<iframe title="Unterm Radar - Wege aus der Digitalen Ueberwachung" src="https://digitalcourage.video/videos/embed/22b4cbc0-357f-4664-8897-31f79ad0f0c0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups" width="560" height="315" frameborder="0"></iframe>`, weblinks: ["https://www.pmhs.de"], contentIsHTML: true},
+    {level: 0, title: "Beispieltipp - kauf mich!", content: `Gut gemacht! Du hast deinen ersten Tipp gekauft. Hier gibt es dann Informationen in Form von Texten, Videos oder Audiodateien, die dir bei den Aufgaben helfen!`, weblinks: ["https://www.pmhs.de"], contentIsHTML: true},
   ]
   
 

@@ -9,11 +9,12 @@ let instructions = `
 `
 
 let tips = [
-  {level: 1, title: "Texte im Paragraphen markieren.", content: "Innerhalb eines Paragraphen können unterschiedliche Auszeichnungen verwendet werden, bsp. <p>Das ist ein <strong>Text</strong></p>. Unter dem Link findest du weitere Auszeichnungsmöglichkeiten.", weblinks: ["https://wiki.selfhtml.org/wiki/HTML/Tutorials/HTML5/Textauszeichnung"]},
-  {level: 1, title: "Zeilenumbruch im Paragraphen verwenden.", content: "Paragraphen können beliebigen HTML Code enthalten, entsprechend kannst du einfach im Text innerhalb des Paragraphen einen Zeilenumbruch (<br>) Einsetzen.", weblinks: ["https://www.w3schools.com/html/html_paragraphs.asp"]},
-  {level: 2, title: "Lösung anzeigen", content: `Die Lösung ist: <xmp>
-  <p id="auszeichnungen">Das ist ein Text.<br> <strong>strong</strong>, <em>ausgezeichnet</em>, <u>Unterstrichen</u>, <del>durchgestrichen</del></p>
-  <hr>
+  {level: 1, title: "Video: HTML Block- vs Inline-Elemente.", content: `<iframe width="560" height="315" src="https://www.youtube.com/embed/rmkPU84RaY4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`, weblinks: ["https://developer.mozilla.org/de/docs/Web/HTML/Block-level_elements"], contentIsHTML: true},
+  {level: 1, title: "Wie finde ich heraus was HTML Block-Elemente sind?.", content: "Du kannst einfach nach HTML Block-Elemente googlen! Dort solltest du schnell Informationen finden. Ansonsten findest du hier zwei Links, die dir sicherlich weiterhelfen!", weblinks: ["https://developer.mozilla.org/de/docs/Web/HTML/Block-level_elements", "https://www.w3schools.com/htmL/html_blocks.asp"]},
+  {level: 3, title: "Lösung anzeigen", content: `Die Lösung kann z.B. so aussehen, es gibt aber noch viel mehr Block-Elemente! <xmp>
+  <h1>Überschrift</h1>
+  <p>Paragraph</p>
+  <blockquote>Zitat</blockquote>
   </xmp>`, contentIsHTML: true}
 ]
 

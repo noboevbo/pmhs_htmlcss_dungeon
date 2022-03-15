@@ -308,13 +308,18 @@ function getTipDialogElement(exerciseID, tipID, tip) {
         const linkTitleEl = document.createElement("h2");
         linkTitleEl.innerText = "Weiterführende Links";
         formEl.appendChild(linkTitleEl);
+        linkListEl = document.createElement("ul");
+        formEl.appendChild(linkListEl);
+
         for(let i=0; i<tip.weblinks.length; i++) {
             let link = tip.weblinks[i];
+            const listItemEl = document.createElement("li");
+            linkListEl.appendChild(listItemEl);
             const linkEl = document.createElement("a");
             linkEl.setAttribute("href", link);
             linkEl.setAttribute("target", "_blank")
             linkEl.innerText = link;
-            formEl.appendChild(linkEl);
+            listItemEl.appendChild(linkEl);
         }
     }
     const menuEl = document.createElement("menu");
