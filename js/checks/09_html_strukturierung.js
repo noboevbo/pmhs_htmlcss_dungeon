@@ -17,8 +17,8 @@ let instructions = `
 
 let tips = [
   {level: 1, title: "Strukturelemente", content: `HTML bietet seit der Version 5 diverse Elemente zur semantischen Strukturierung von Websites. Auf den verlinkten Websites findest du weitere Informationen zu den Tags und wie sie verwendet werden können um Inhalte zu strukturieren.`, weblinks: ["https://wiki.selfhtml.org/wiki/HTML/Tutorials/HTML5/Seitenstrukturierung", "https://www.w3schools.com/html/html5_semantic_elements.asp"]},
-  {level: 1, title: "Benötigte Elemente um die Aufgabe zu lösen.", content: "Um diese Aufgabe zu lösen benötigst du für die Kopfzeile das <em>header</em>-Element, für den Hauptteil das <em>main</em>-Element, für die Fußzeile das <em>footer</em>-Element und die Blogposts sollen in einem <em>article</em>-Element umgesetzt werden. Für die Textformatierungen werden <em>h1</em>-, <em>h2</em>-, <em>p</em>- und <em>small</em>-Elemente benötigt. Weitere Infos findest du auf den verlinkten Websites.", weblinks: ["https://wiki.selfhtml.org/wiki/HTML/Tutorials/HTML5/Seitenstrukturierung", "https://www.w3schools.com/html/html5_semantic_elements.asp"], contentIsHTML: true},
-  {level: 2, title: "Lösung anzeigen", content: `Die Lösung ist: <xmp>
+  {level: 2, title: "Benötigte Elemente um die Aufgabe zu lösen.", content: "Um diese Aufgabe zu lösen benötigst du für die Kopfzeile das <em>header</em>-Element, für den Hauptteil das <em>main</em>-Element, für die Fußzeile das <em>footer</em>-Element und die Blogposts sollen in einem <em>article</em>-Element umgesetzt werden. Für die Textformatierungen werden <em>h1</em>-, <em>h2</em>-, <em>p</em>- und <em>small</em>-Elemente benötigt. Weitere Infos findest du auf den verlinkten Websites.", weblinks: ["https://wiki.selfhtml.org/wiki/HTML/Tutorials/HTML5/Seitenstrukturierung", "https://www.w3schools.com/html/html5_semantic_elements.asp"], contentIsHTML: true},
+  {level: 3, title: "Lösung anzeigen", content: `Die Lösung ist: <xmp>
   <header>
     <h1>Mein Blo[ck]g</h1>
   </header>
