@@ -20,8 +20,9 @@ let instructions = `
 `
 
 let tips = [
-  {level: 1, title: "Texte im Paragraphen markieren.", content: "Innerhalb eines Paragraphen können unterschiedliche Auszeichnungen verwendet werden, bsp. <p>Das ist ein <strong>Text</strong></p>. Unter dem Link findest du weitere Auszeichnungsmöglichkeiten.", weblinks: ["https://wiki.selfhtml.org/wiki/HTML/Tutorials/HTML5/Textauszeichnung"]},
-  {level: 1, title: "Zeilenumbruch im Paragraphen verwenden.", content: "Paragraphen können beliebigen HTML Code enthalten, entsprechend kannst du einfach im Text innerhalb des Paragraphen einen Zeilenumbruch (<br>) Einsetzen.", weblinks: ["https://www.w3schools.com/html/html_paragraphs.asp"]},
+  {level: 1, title: "Aufbau von Formularen", content: "Formulare werden vom <form>-Tag umschlossen und beinhalten meist input- und label-Elemente. Ein label-Element wird immer einem input-Element zugeordnet und ist die Beschriftung für das entsprechende Eingabefeld. Weitere Informationen und Beispiele findest du auf der verlinkten Website.", weblinks: ["https://www.w3schools.com/html/html_forms.asp"]},
+  {level: 2, title: "Art des Eingabefelds angeben.", content: `Die Art des Eingabefelds wird über das Attribut type angegeben. Ein Beispiel wäre: <xmp><input type="password" [...]></xmp>
+  Hier wurde der Type auf <em>password</em> gesetzt, das Eingabefeld wird vom Browser automatisch als Passwortfeld behandelt und die eingegebenen Zeichen durch Punkte oder Sternchen ersetzt. Es gibt weitere Typen wie <em>number</em> (für nummerische Eingaben), radio (für eine Auswahl aus mehreren Möglichkeiten), <em>checkbox</em> (für Mehrfachauswahlen) oder <em>submit</em> für den Bestätigungsbutton. Weitere Infos findest du auf der verlinkten Website.`, weblinks: ["https://www.w3schools.com/html/html_paragraphs.asp"], contentIsHTML: true},
   {level: 3, title: "Lösung anzeigen", content: `Die Lösung ist: <xmp>
   <form id="formular1">
     <label for="vorname">Vorname:</label><br>

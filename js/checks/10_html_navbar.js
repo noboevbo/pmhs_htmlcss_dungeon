@@ -11,12 +11,18 @@ let instructions = `
 `
 
 let tips = [
-  {level: 1, title: "Texte im Paragraphen markieren.", content: "Innerhalb eines Paragraphen können unterschiedliche Auszeichnungen verwendet werden, bsp. <p>Das ist ein <strong>Text</strong></p>. Unter dem Link findest du weitere Auszeichnungsmöglichkeiten.", weblinks: ["https://wiki.selfhtml.org/wiki/HTML/Tutorials/HTML5/Textauszeichnung"]},
-  {level: 1, title: "Zeilenumbruch im Paragraphen verwenden.", content: "Paragraphen können beliebigen HTML Code enthalten, entsprechend kannst du einfach im Text innerhalb des Paragraphen einen Zeilenumbruch (<br>) Einsetzen.", weblinks: ["https://www.w3schools.com/html/html_paragraphs.asp"]},
+  {level: 1, title: "Verweisziel angeben", content: `Das Verweisziel wird über das <em>href</em>-Attribut des Link Elements angegeben. Wird eine Raute (#) eingegeben passiert beim Klick auf den Link nichts. Dies wird oft während der Entwicklung verwendet, wenn das tatsächliche Linkziel noch nicht klar ist. Beispiel: <xmp><a href="#">Linkname</a></xmp> Weitere Informationen findest du auf der verlinkten Website.`, weblinks: ["https://wiki.selfhtml.org/wiki/HTML/Tutorials/Navigation/Grundstruktur"], contentIsHTML: true},
+  {level: 1, title: "Aufbau der Navigationsleiste.", content: "Die Navigationsleiste soll im Headerelement angelegt werden. In der Navigationsleiste soll dann eine ungeordnete Liste angelegt werden. In jedem Listeneintrag soll dann der entsprechende Link angelegt werden. Du brauchst also das <em>header</em>-, <em>nav</em>-, <em>ul</em>-, <em>li</em>- und <em>a</em>-Element, in dieser Reihenfolge. Weitere Informationen findest du auf der verlinkten Website.", weblinks: ["https://www.w3schools.com/html/html_paragraphs.asp"], contentIsHTML: true},
   {level: 3, title: "Lösung anzeigen", content: `Die Lösung ist: <xmp>
-  <a id="einlink" href="https://wiki.selfhtml.org", target="_blank">selfhtml</a>
-  <img id="bild1" src="static/Boxmodell-detail.png" alt="Das CSS-Boxmodell.">
-  <img id="bild2" src="../img/00_tutorial-code-screenshot.png" alt="Screenshot vom Aufgabencode">
+  <header id="header">
+    <nav id="navbar">
+      <ul id="navlinks">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+  </header>
   </xmp>`, contentIsHTML: true}
 ]
 
