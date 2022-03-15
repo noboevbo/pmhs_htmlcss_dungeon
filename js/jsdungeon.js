@@ -1,19 +1,19 @@
 var exercises = [
     // id, title
-    { id: "00_tutorial", name: "Tutorial" },
-    { id: "01_html_tags", name: "HTML Tags" },
-    { id: "02_html_typo", name: "HTML Typografie" },
-    { id: "03_html_block_elemente", name: "HTML Block-Elemente" },
-    { id: "04_html_inline_elemente", name: "HTML Inline-Elemente" },
-    { id: "05_html_pfade", name: "HTML Pfade" },
-    { id: "06_html_embedded", name: "HTML Embedded Content" },
-    { id: "07_html_tabellen", name: "HTML Tabellen" },
-    { id: "08_html_formulare", name: "HTML Formulare" },
-    { id: "09_html_strukturierung", name: "HTML Strukturierung" },
-    { id: "10_html_navbar", name: "HTML Navbar" },
+    { id: "00_tutorial", name: "Tutorial", level: 3 },
+    { id: "01_html_tags", name: "HTML Tags", level: 1 },
+    { id: "02_html_typo", name: "HTML Typografie", level: 1 },
+    { id: "03_html_block_elemente", name: "HTML Block-Elemente", level: 2 },
+    { id: "04_html_inline_elemente", name: "HTML Inline-Elemente", level: 2 },
+    { id: "05_html_pfade", name: "HTML Pfade", level: 3 },
+    { id: "06_html_embedded", name: "HTML Embedded Content", level: 2 },
+    { id: "07_html_tabellen", name: "HTML Tabellen", level: 2 },
+    { id: "08_html_formulare", name: "HTML Formulare", level: 2 },
+    { id: "09_html_strukturierung", name: "HTML Strukturierung", level: 2 },
+    { id: "10_html_navbar", name: "HTML Navbar", level: 1 },
 ];
 
-const emptyExerciseState = { solved: false, tipsPurchased: [], lastUpdate: Date.now() };
+const emptyExerciseState = { solved: false, tipsPurchased: [], lastUpdate: Date.now(), exerciseNum: -1 };
 
 // Replace console.log with stub implementation and add.
 window.console.stdlog = console.log.bind(console);
@@ -34,6 +34,7 @@ var selectedExerciseInstructionsEl = document.getElementById("selectedExerciseIn
 var selectedExerciseEl = document.getElementById("selectedExercise");
 var exerciseResultEl = document.getElementById("exerciseResult");
 var exerciseResultHeaderEl = document.getElementById("exerciseResultHeader");
+var exerciseResultFooterEl = document.getElementById("exerciseResultFooter");
 var exerciseResultMessageListEl = document.getElementById("exerciseResultMessageList");
 var exerciseTipListEl = document.getElementById("exerciseTips");
 var dialogWrapperEl = document.getElementById("dialogWrapper");
@@ -62,7 +63,8 @@ function initializePlayerGold() {
     if (playerGold !== null) {
         return
     }
-    playerGold = 50;
+    // playerGold = 50;
+    playerGold = 0;
     localStorage.setItem("playerGold", playerGold);
 }
 
@@ -73,7 +75,9 @@ function initializeDatabase(exercises) {
         if (item !== null) {
             continue
         }
-        writeExerciseState(exercise.id, emptyExerciseState);
+        let state = Object.assign({}, emptyExerciseState);
+        state.exerciseNum = i;
+        writeExerciseState(exercise.id, state);
     }
 }
 
@@ -117,9 +121,9 @@ function initializeExercises() {
         linkNode.setAttribute('onclick', `exerciseSelected(${i})`);
         linkNode.href = "#";
         if (exerciseState.solved) {
-            linkNode.innerHTML = `<i class="nes-icon trophy is-small"></i> ` + `${i}`.padStart(2, "0") + ": " + exercise.name;
+            linkNode.innerHTML = `<strong><i class="nes-icon trophy is-small"></i> Level ` + `${i}`.padStart(2, "0") + `</strong><br><p>` + exercise.name + "</p>";
         } else {
-            linkNode.innerHTML = `<i class="nes-icon close is-small"></i> ` + `${i}`.padStart(2, "0") + ": " + exercise.name;
+            linkNode.innerHTML = `<strong><i class="nes-icon close is-small"></i> Level ` + `${i}`.padStart(2, "0") + "</strong><br><p>" + exercise.name + "</p>";
         }
         liNode.appendChild(linkNode);
         exerciseListEl.appendChild(liNode);
@@ -144,9 +148,10 @@ function deinitializeActiveExercise() {
 
 function updateExerciseState(exerciseID, exerciseState, errorMessages = []) {
     let linkNode = document.getElementById(exerciseID + "_link");
-    let stateSymbol = exerciseState.solved ? `<i class="nes-icon trophy is-small"></i>` : `<i class="nes-icon close is-small"></i>`;
-    linkNode.innerHTML = stateSymbol + " " + linkNode.innerText;
-    setExperimentState(exerciseState.solved, errorMessages);
+    let iconNode = linkNode.getElementsByTagName("i")[0];
+    let stateSymbol = exerciseState.solved ? "nes-icon trophy is-small" : "nes-icon close is-small";
+    iconNode.className = stateSymbol;
+    setExperimentState(exerciseID, exerciseState, errorMessages);
 }
 
 window.updateExerciseState = updateExerciseState;
@@ -157,7 +162,6 @@ function exerciseSelected(exerciseNumber) {
 }
 
 function setActiveExercise(exercise) {
-    console.log("Set");
     exerciseTipListEl.innerHTML = "";
     selectedExerciseNameEl.innerText = "Aufgabe: " + exercise.name;
     selectedExerciseEl.src = "aufgaben/" + exercise.id + ".html";
@@ -183,17 +187,50 @@ function setActiveExercise(exercise) {
 //     console.log("injected");
 // }
 
-function setExperimentState(isSolved, messages = []) {
+function setExperimentState(exerciseID, exerciseState, messages = []) {
     exerciseResultMessageListEl.innerHTML = "";
-    if (isSolved) {
+    if (exerciseState.solved) {
         exerciseResultEl.className = "alert alert-success";
         exerciseResultHeaderEl.innerHTML = `<span class="nes-text is-success">Aufgabe korrekt gelöst!</span>`;
+        if (!exerciseState.rewardCollected) {
+            let reward = getGoldAmountFromLevel(exercises[exerciseState.exerciseNum].level);
+            exerciseResultFooterEl.innerHTML = `<h3>Belohnung abholen:</h3>
+            <button type="button" id="0" class="nes-btn is-warning tooltip" onclick="getReward('${exerciseID}')"><span><i class="nes-icon coin is-small"></i> ${reward}g</span></button>`
+        }
     } else {
         exerciseResultEl.className = "alert alert-danger";
         exerciseResultHeaderEl.innerHTML = `<span class="nes-text is-error">Aufgabe noch nicht korrekt gelöst!</span>`;
+        exerciseResultFooterEl.innerHTML = ``;
     }
     for (let i = 0; i < messages.length; i++) {
         exerciseResultMessageListEl.appendChild(getResultMessageListItem(messages[i]))
+    }
+}
+
+function getReward(exerciseID) {
+    let exerciseState = getExerciseState(exerciseID);
+    if (!exerciseState.solved || exerciseState.rewardCollected) {
+        return;
+    }
+    exerciseState.rewardCollected = true;
+    writeExerciseState(exerciseID, exerciseState);
+    updateGold(getGoldAmountFromLevel(exercises[exerciseState.exerciseNum].level));
+    exerciseResultFooterEl.innerHTML = ``;
+    updatePageVariables();
+}
+
+function getGoldAmountFromLevel(level) {
+    switch (level) {
+        case 0:
+            return 10;
+        case 1:
+            return 25;
+        case 2:
+            return 50;
+        case 3:
+            return 75;
+        default:
+            return 0;
     }
 }
 
