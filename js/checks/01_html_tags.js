@@ -12,8 +12,8 @@ let instructions = `
 `
 
 let tips = [
-  {level: 1, title: "Überschrift erstellen", content: "Überschriften erster Ordnung können mit dem h1 Tag erstellt werden", weblinks: ["https://www.w3schools.com/tags/tag_hn.asp"]},
-  {level: 2, title: "Paragraphen anlegen", content: "Paragraphen können mit dem p Tag erstellt werden.", weblinks: ["https://www.w3schools.com/html/html_paragraphs.asp"]},
+  {level: 1, title: "Überschrift / Paragraphen erstellen", content: "Überschriften erster Ordnung können mit dem h1 Tag erstellt werden. Paragraphen können mit dem p Tag erstellt werden.", weblinks: ["https://www.w3schools.com/tags/tag_hn.asp", "https://www.w3schools.com/html/html_paragraphs.asp"]},
+  {level: 2, title: "Geordnete Listen erstellen", content: "Eine geordnete Liste wird mit dem ol-Tag (OrderedList) erstellt. In diesem Tag werden dann Listenelemente benötigt, diese werden mit dem li-Element (ListItem) erstellt.", weblinks: ["https://developer.mozilla.org/de/docs/Web/HTML/Element/ol", "https://wiki.selfhtml.org/wiki/HTML/Tutorials/Listen/Aufz%C3%A4hlungslisten#li"]},
   {level: 3, title: "Lösung anzeigen", content: `Die Lösung ist: <xmp>
   <h1 id="titel">Dungeon Run 1</h1> <p id="spielertext">Spielername: <b>Fritz</b></p>
   <ol id="dieliste">
@@ -30,7 +30,8 @@ var spielername = "";
 function checkPlayerName() {
   let playerEl = document.getElementById("spielertext");
   let fats = playerEl.getElementsByTagName("b");
-  if (fats.length === 0) {
+  let strongs = playerEl.getElementsByTagName("strong");
+  if (fats.length === 0 && strongs.length === 0) {
     return getFailResultObj(`Es wurde kein fett gedruckter Spielername gefunden.`)
   } else if (fats.length > 1) {
     return getFailResultObj(`Spielername unklar. Mehr als ein fettgedrucktes Wort gefunden.`)
