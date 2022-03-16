@@ -6,7 +6,7 @@ let instructions = `
 <ol>
 <li>Erstelle eine Überschrift erster Ordnung mit dem Titel <em>Dungeon Run 1</em>. Die Überschrift soll die ID <em>titel</em> haben.</li>
 <li>Erstelle einen Paragraphen, mit dem Text <em>Spielername: DEINSPIELERNAME</em>, erstetze <em>DEINSPIELERNAME</em> dabei mit einem beliebigen Namen. Der Paragraph soll die ID <em>spielertext</em> haben.</li>
-<li>Der Spielername soll <b>fett</b> dargestellt werden.</li>
+<li>Der Spielername soll mithilfe eines HTML-Elements <strong>fett</strong> dargestellt werden.</li>
 <li>Erstelle eine geordnete Liste mit mindestens drei Einträgen! Das Listenelement soll die ID <em>dieliste</em> haben.</li>
 </ol>
 `
@@ -15,13 +15,12 @@ let tips = [
   {level: 1, title: "Überschrift / Paragraphen erstellen", content: "Überschriften erster Ordnung können mit dem h1 Tag erstellt werden. Paragraphen können mit dem p Tag erstellt werden.", weblinks: ["https://www.w3schools.com/tags/tag_hn.asp", "https://www.w3schools.com/html/html_paragraphs.asp"]},
   {level: 2, title: "Geordnete Listen erstellen", content: "Eine geordnete Liste wird mit dem ol-Tag (OrderedList) erstellt. In diesem Tag werden dann Listenelemente benötigt, diese werden mit dem li-Element (ListItem) erstellt.", weblinks: ["https://developer.mozilla.org/de/docs/Web/HTML/Element/ol", "https://wiki.selfhtml.org/wiki/HTML/Tutorials/Listen/Aufz%C3%A4hlungslisten#li"]},
   {level: 3, title: "Lösung anzeigen", content: `Die Lösung ist: <xmp>
-  <h1 id="titel">Dungeon Run 1</h1> <p id="spielertext">Spielername: <b>Fritz</b></p>
+  <h1 id="titel">Dungeon Run 1</h1> <p id="spielertext">Spielername: <strong>Fritz</strong></p>
   <ol id="dieliste">
     <li>1</li>
     <li>2</li>
     <li>3</li>
   </ol>
-  </xmp>
   `, contentIsHTML: true}
 ]
 
@@ -29,9 +28,8 @@ var spielername = "";
 
 function checkPlayerName() {
   let playerEl = document.getElementById("spielertext");
-  let fats = playerEl.getElementsByTagName("b");
-  let strongs = playerEl.getElementsByTagName("strong");
-  if (fats.length === 0 && strongs.length === 0) {
+  let fats = playerEl.querySelectorAll("b,strong");
+  if (fats.length === 0) {
     return getFailResultObj(`Es wurde kein fett gedruckter Spielername gefunden.`)
   } else if (fats.length > 1) {
     return getFailResultObj(`Spielername unklar. Mehr als ein fettgedrucktes Wort gefunden.`)
