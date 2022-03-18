@@ -224,7 +224,7 @@ export function hasCorrectStyleValue(elName, styleName, styleValue) {
 
 export function hasMinBlockOrInlineElements(minNumElements, inline = false) {
   let els = document.body.getElementsByTagName("*");
-  let count = 0;
+  let found = [];
   for(let i=0; i<els.length; i++) {
     let el = els[i];
     if (el.tagName.toUpperCase() === "SCRIPT") {
@@ -232,9 +232,11 @@ export function hasMinBlockOrInlineElements(minNumElements, inline = false) {
     }
     let isBlock = window.getComputedStyle(el, null).display === "block";
     if ((!inline && isBlock) || (inline && !isBlock)) {
-      count += 1;
+      if (!found.includes(el.tagName)) {
+        found.push(el.tagName);
+      }
     }
-    if (count >= minNumElements) {
+    if (found.length >= minNumElements) {
       return getSuccessResultObj();
     }
   }

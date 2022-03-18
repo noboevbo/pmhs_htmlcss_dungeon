@@ -16,6 +16,9 @@ https://www.w3schools.com/html/default.asp durchschauen, jede Seite verstehen
 - CSS (hauptsächlich richtung Farben, Typo, Border, Margin, Padding, ...)
 - Barrierefreiheit (img alt usw.)
 ## TODOs
+DEL / INS synonyme, auch nochmal bei i, em usw. checken
+
+
 Aufgaben in Kategorien ordnen (nach https://www.on-design.de/tutor/html5_css3/referenzen/vokabel.html)? Head Elemente
 Body Elemente
 Block Elemente (Strukturgebend)
