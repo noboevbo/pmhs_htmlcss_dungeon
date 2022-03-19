@@ -1,4 +1,3 @@
-import { getEmptyExerciseStateMessage } from '../core/models.js';
 import { globalVarDoesNotExistMsg, localVarDoesNotExistMsg, isGlobalNotLocalMsg, wrongTypeMsg, stringIsEmptyMsg, isNotConstMsg, elDoesNotExistMsg, elWrongInnerTextMsg, elWrongStyleValueMsg, wrongValueMsg, logCallDoesNotExist, elWrongTagMsg, validationErrorPossibleUndefinedObjMsg } from './error_messages.js'
 
 // Replace console.log with stub implementation and add.
@@ -253,7 +252,7 @@ export function hasMinBlockOrInlineElements(minNumElements, inline = false) {
       return getSuccessResultObj();
     }
   }
-  return getFailResultObj(`Es sind erst ${count} von ${minNumElements} ${inline ? "Inline" : "Block"}-Elemente vorhanden!`)
+  return getFailResultObj(`Es sind erst ${found.length} von ${minNumElements} ${inline ? "Inline" : "Block"}-Elemente vorhanden!`)
 }
 
 export function isBlockElement(elName) {
@@ -298,42 +297,4 @@ export function or(resultObjects) {
     errorMessage += resultObj.errorMessage + " oder: <br>";
   }
   return getFailResultObj(errorMessage);
-}
-
-
-/* Main validation procedure */
-
-export const noop = () => {};
-
-export function validate(exerciseID, validationFuncs, beforeSuccess = noop, afterSuccess = noop, beforeFail = noop, afterFail = noop) {
-  console.log("validate");
-  let finalResult = true;
-  let errorMessages = [];
-  for(let i = 0; i < validationFuncs.length; i++) {
-    try {
-      let resultObj = validationFuncs[i]();
-      if (!resultObj.result) {
-        finalResult = false;
-        errorMessages.push(resultObj.errorMessage)
-        // break; // TODO: support breaking and non breaking errors
-      }
-    } catch (e) {
-      finalResult = false;
-      console.log(e);
-      // errorMessages.push(e);
-    }
-  }
-  // let exerciseState = window.parent.getExerciseState(exerciseID);
-  let exerciseSolvedMsg = getEmptyExerciseStateMessage();
-  exerciseSolvedMsg.exerciseID = exerciseID;
-  if (finalResult) {
-    beforeSuccess();
-    exerciseSolvedMsg.content = true;
-    window.parent.postMessage(exerciseSolvedMsg, window.origin);
-    afterSuccess();
-  } else {
-    beforeFail();
-    window.parent.postMessage(exerciseSolvedMsg, window.origin);
-    afterFail();
-  }
 }

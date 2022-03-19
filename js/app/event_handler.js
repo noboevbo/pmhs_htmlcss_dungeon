@@ -4,6 +4,8 @@ import {
 import {
   setTips
 } from "./tip_handler.js";
+import { updateExerciseState } from "./experiment_state_handler.js";
+import { updatePageVariables } from "./view.js";
 
 function exerciseMessageHandler(event) {
   if (event.origin !== window.origin) {
@@ -11,7 +13,6 @@ function exerciseMessageHandler(event) {
     return;
   }
   let msg = event.data;
-  console.log(`Got msg with subject: ${msg.subject}`);
   switch (msg.subject) {
     case "initInstructions":
       setInstructions(msg);
@@ -19,12 +20,20 @@ function exerciseMessageHandler(event) {
     case "initTips":
       setTips(msg);
       break;
+    case "updatedExerciseState":
+      updateExerciseState(msg.exerciseID, msg.content.solved, msg.content.errorMessages);
+      break;
+    case "updatePageVariables":
+      updatePageVariables();
+      break;
+    default:
+      console.log(`Received msg with unknown subject: ${msg.subject}`);
+      break;
   }
-  console.log(event);
 }
 
-function setInstructions(instructionMsg) {
-  selectedExerciseInstructionsEl.innerHTML = instructionMsg.content;
+function setInstructions(msg) {
+  selectedExerciseInstructionsEl.innerHTML = msg.content;
 }
 
 

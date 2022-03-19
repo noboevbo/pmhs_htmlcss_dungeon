@@ -1,5 +1,5 @@
-import { elCheckAttributeValue, elementIsCorrectTag, elementIsChildOf, or, validate} from '../validation_helper.js';
-
+import { elCheckAttributeValue, elementIsCorrectTag, elementIsChildOf, or } from '../exercise/validation_helper.js';;
+import { Exercise } from '../exercise/exercise_base.js';
 let exerciseID = "08_html_formulare";
 
 let instructions = `
@@ -57,15 +57,5 @@ let validationFuncs = [
   function() { return elementIsChildOf("registerbtn", "formular1"); },
 ]
 
-window.onload = init;
-
-function init() {
-  window.parent.initializeInstructions(exerciseID, instructions);
-  window.parent.initializeTips(exerciseID, tips);
-  validate(exerciseID, validationFuncs);
-}
-// Tests
-    // var spielername = "Hans";
-    // let spielername = "Hans";
-    // var spielername = 42;
-
+let exerciseBase = new Exercise(exerciseID, instructions, tips, validationFuncs);
+window.onload = exerciseBase.init();

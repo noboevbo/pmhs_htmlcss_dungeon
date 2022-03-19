@@ -1,4 +1,5 @@
-import { elementIsCorrectTag, elementsExist, elCheckAttributeValue, elSrcAttributeIs, elAttributeValueRegex, or, validate} from '../validation_helper.js';
+import { elementIsCorrectTag, elementsExist, elCheckAttributeValue, elSrcAttributeIs, elAttributeValueRegex, or} from '../exercise/validation_helper.js';
+import { Exercise } from '../exercise/exercise_base.js';
 
 let exerciseID = "06_html_embedded";
 
@@ -34,13 +35,5 @@ let validationFuncs = [
   function() { return elAttributeValueRegex("youtube1", "src", "http.*youtube"); },
 ]
 
-window.onload = function() { 
-  window.parent.initializeInstructions(exerciseID, instructions);
-  window.parent.initializeTips(exerciseID, tips);
-  validate(exerciseID, validationFuncs);
-};
-// Tests
-    // var spielername = "Hans";
-    // let spielername = "Hans";
-    // var spielername = 42;
-
+let exerciseBase = new Exercise(exerciseID, instructions, tips, validationFuncs);
+window.onload = exerciseBase.init();

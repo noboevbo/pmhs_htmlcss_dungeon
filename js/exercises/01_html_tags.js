@@ -1,7 +1,8 @@
-import { elementIsCorrectTag, getFailResultObj, getSuccessResultObj, innerTextEquals, innerTextStartsWith, isBlockElement, isInlineElement, listHasMinElements, validate} from '../validation_helper.js';
+import { elementIsCorrectTag, getFailResultObj, getSuccessResultObj, innerTextEquals, innerTextStartsWith, isBlockElement, isInlineElement, listHasMinElements } from '../exercise/validation_helper.js';
+import { Exercise } from '../exercise/exercise_base.js';
+import { getEmptyUpdatePageVariablesMessage } from '../core/event_message_factory.js';
 
 let exerciseID = "01_html_tags";
-
 let instructions = `
 <ol>
 <li>Erstelle eine Überschrift erster Ordnung mit dem Titel <em>Dungeon Run 1</em>. Die Überschrift soll die <b>id</b> <em>hauptUeberschrift</em> haben.</li>
@@ -51,25 +52,23 @@ let validationFuncs = [
   // function() { return isBlockElement("blockelement"); },
 ]
 
-function beforeSuccess() {
-  localStorage.setItem("01_playerName", spielername);
+class ExerciseA extends Exercise {
+  constructor(exerciseID, instructions, tips, validationFuncs) {
+    super(exerciseID, instructions, tips, validationFuncs);
+  }
+
+  beforeSuccess() {
+    localStorage.setItem("01_playerName", spielername);
+  }
+  
+  afterSuccess() {
+    window.parent.postMessage(getEmptyUpdatePageVariablesMessage(), window.origin);
+  }
+  
+  beforeFail() {
+    localStorage.removeItem("01_playerName");
+  }
 }
 
-function afterSuccess() {
-  window.parent.updatePageVariables();
-}
-
-function beforeFail() {
-  localStorage.removeItem("01_playerName");
-}
-
-window.onload = function() { 
-  window.parent.initializeInstructions(exerciseID, instructions);
-  window.parent.initializeTips(exerciseID, tips);
-  validate(exerciseID, validationFuncs, beforeSuccess, afterSuccess, beforeFail);
-};
-// Tests
-    // var spielername = "Hans";
-    // let spielername = "Hans";
-    // var spielername = 42;
-
+let exercise = new ExerciseA(exerciseID, instructions, tips, validationFuncs);
+window.onload = exercise.init();

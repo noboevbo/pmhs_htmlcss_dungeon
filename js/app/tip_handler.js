@@ -1,5 +1,6 @@
 import { dialogWrapperEl, exerciseTipListEl } from "./dom_selectors.js";
 import { getExerciseState, updatePlayerGold, writeExerciseState } from './model.js';
+import { updatePageVariables } from "./view.js";
 
 var currentTips = []
 var currentTipNodes = []
@@ -8,9 +9,6 @@ function setTips(initTipMsg) {
   let exerciseID = initTipMsg.exerciseID;
 
     let tips = initTipMsg.content;
-    console.log(`Initialize Tips`);
-    console.log(initTipMsg);
-    console.log(tips);
     currentTips = tips;
     currentTipNodes = [];
     dialogWrapperEl.innerHTML = ""; // Reset dialogs

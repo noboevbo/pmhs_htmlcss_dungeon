@@ -1,7 +1,7 @@
-import { hasMinBlockOrInlineElements, validate} from '../validation_helper.js';
+import { hasMinBlockOrInlineElements } from '../exercise/validation_helper.js';;
+import { Exercise } from '../exercise/exercise_base.js';
 
 let exerciseID = "03_html_block_elemente";
-
 let instructions = `
 <ol>
 <li>Füge mindestens drei unterschiedliche HTML Block-Elemente ein.</li>
@@ -22,13 +22,5 @@ let validationFuncs = [
   function() { return hasMinBlockOrInlineElements(3, false); },
 ]
 
-window.onload = function() { 
-  window.parent.initializeInstructions(exerciseID, instructions);
-  window.parent.initializeTips(exerciseID, tips);
-  validate(exerciseID, validationFuncs);
-};
-// Tests
-    // var spielername = "Hans";
-    // let spielername = "Hans";
-    // var spielername = 42;
-
+let exerciseBase = new Exercise(exerciseID, instructions, tips, validationFuncs);
+window.onload = exerciseBase.init();

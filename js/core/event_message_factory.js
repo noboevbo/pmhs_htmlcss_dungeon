@@ -14,7 +14,7 @@ function getEmptyInitTipsMessage() {
   };
 };
 
-function getEmptyExerciseSolvedMessage() {
+function getEmptyExerciseStateMessage() {
   return {
     subject: "updatedExerciseState",
     exerciseID: -1,
@@ -22,8 +22,14 @@ function getEmptyExerciseSolvedMessage() {
   }
 }
 
+function getEmptyUpdatePageVariablesMessage() {
+  return {
+    subject: "updatePageVariables"
+  }
+}
+
 export {
   getEmptyInitInstructionsMessage,
   getEmptyInitTipsMessage,
-  getEmptyExerciseSolvedMessage as getEmptyExerciseStateMessage
-};
+  getEmptyExerciseStateMessage,
+  getEmptyUpdatePageVariablesMessage};

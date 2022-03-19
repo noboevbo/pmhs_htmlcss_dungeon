@@ -1,5 +1,5 @@
-import { elementIsCorrectTag, elementsExist, or, validate} from '../validation_helper.js';
-
+import { elementIsCorrectTag, elementsExist, or} from '../exercise/validation_helper.js';;
+import { Exercise } from '../exercise/exercise_base.js';
 let exerciseID = "09_html_strukturierung";
 
 let instructions = `
@@ -49,13 +49,5 @@ let validationFuncs = [
   function() { return elementsExist("small", 1, false, document.getElementsByTagName("footer")[0]); },
 ]
 
-window.onload = function() { 
-  window.parent.initializeInstructions(exerciseID, instructions);
-  window.parent.initializeTips(exerciseID, tips);
-  validate(exerciseID, validationFuncs);
-};
-// Tests
-    // var spielername = "Hans";
-    // let spielername = "Hans";
-    // var spielername = 42;
-
+let exerciseBase = new Exercise(exerciseID, instructions, tips, validationFuncs);
+window.onload = exerciseBase.init();

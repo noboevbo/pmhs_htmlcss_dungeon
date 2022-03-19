@@ -1,4 +1,5 @@
-import { elementIsCorrectTag, elementIsChildOf, validate, getFailResultObj, elementsExist, getSuccessResultObj} from '../validation_helper.js';
+import { elementIsCorrectTag, elementIsChildOf, getFailResultObj, elementsExist, getSuccessResultObj} from '../exercise/validation_helper.js';
+import { Exercise } from '../exercise/exercise_base.js';
 
 let exerciseID = "10_html_navbar";
 
@@ -65,13 +66,5 @@ let validationFuncs = [
   function() { return checkLinks(document.getElementById("navlinks"), ["#", "#", "#"], ["Home", "News", "About"])}
 ]
 
-window.onload = function() { 
-  window.parent.initializeInstructions(exerciseID, instructions);
-  window.parent.initializeTips(exerciseID, tips);
-  validate(exerciseID, validationFuncs);
-};
-// Tests
-    // var spielername = "Hans";
-    // let spielername = "Hans";
-    // var spielername = 42;
-
+let exerciseBase = new Exercise(exerciseID, instructions, tips, validationFuncs);
+window.onload = exerciseBase.init();

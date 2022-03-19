@@ -1,4 +1,5 @@
-import { elementIsCorrectTag, linkTargetIsCorrect, linkContentIsCorrect, elSrcAttributeIs, or, validate} from '../validation_helper.js';
+import { elementIsCorrectTag, linkTargetIsCorrect, linkContentIsCorrect, elSrcAttributeIs, or} from '../exercise/validation_helper.js';
+import { Exercise } from '../exercise/exercise_base.js';
 
 let exerciseID = "05_html_pfade";
 
@@ -28,13 +29,5 @@ let validationFuncs = [
   function() { return elSrcAttributeIs("bild2", "../img/00_tutorial-code-screenshot.png"); }
 ]
 
-window.onload = function() { 
-  window.parent.initializeInstructions(exerciseID, instructions);
-  window.parent.initializeTips(exerciseID, tips);
-  validate(exerciseID, validationFuncs);
-};
-// Tests
-    // var spielername = "Hans";
-    // let spielername = "Hans";
-    // var spielername = 42;
-
+let exerciseBase = new Exercise(exerciseID, instructions, tips, validationFuncs);
+window.onload = exerciseBase.init();

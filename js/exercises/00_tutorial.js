@@ -1,11 +1,7 @@
 import {
-    validate,
     getSuccessResultObj
 } from '../exercise/validation_helper.js';
-import {
-    getEmptyInitInstructionsMessage,
-    getEmptyInitTipsMessage
-} from '../core/models.js';
+import { Exercise } from '../exercise/exercise_base.js';
 
 let exerciseID = "00_tutorial";
 
@@ -29,20 +25,5 @@ let tips = [{
     contentIsHTML: true
 }, ]
 
-
-window.onload = function () {
-    let initInstructionsMsg = getEmptyInitInstructionsMessage();
-    initInstructionsMsg.exerciseID = exerciseID;
-    initInstructionsMsg.content = instructions;
-    let initTipsMsg = getEmptyInitTipsMessage();
-    initTipsMsg.exerciseID = exerciseID;
-    initTipsMsg.content = tips;
-
-    window.parent.postMessage(initInstructionsMsg, window.origin);
-    window.parent.postMessage(initTipsMsg, window.origin);
-    validate(exerciseID, validationFuncs);
-
-    // window.parent.initializeInstructions(exerciseID, instructions);
-    // window.parent.initializeTips(exerciseID, tips);
-
-};
+let exerciseBase = new Exercise(exerciseID, instructions, tips, validationFuncs);
+window.onload = exerciseBase.init();
