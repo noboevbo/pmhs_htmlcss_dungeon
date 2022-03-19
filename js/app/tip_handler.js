@@ -12,6 +12,7 @@ function setTips(initTipMsg) {
     currentTips = tips;
     currentTipNodes = [];
     dialogWrapperEl.innerHTML = ""; // Reset dialogs
+    exerciseTipListEl.innerHTML = "";
     let exerciseState = getExerciseState(exerciseID);
     for (let i = 0; i < tips.length; i++) {
         let tip = tips[i]

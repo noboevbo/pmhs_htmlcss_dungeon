@@ -41,9 +41,9 @@ function checkPlayerName() {
 }
 
 let validationFuncs = [
-  function() { return elementIsCorrectTag("titel", "h1"); },
+  function() { return elementIsCorrectTag("hauptUeberschrift", "h1"); },
+  function() { return innerTextEquals("hauptUeberschrift", "Dungeon Run 1"); },
   function() { return elementIsCorrectTag("spielertext", "p"); },
-  function() { return innerTextEquals("titel", "Dungeon Run 1"); },
   function() { return innerTextStartsWith("spielertext", "Spielername: "); },
   function() { return checkPlayerName(); },
   function() { return elementIsCorrectTag("dieliste", "ol"); },

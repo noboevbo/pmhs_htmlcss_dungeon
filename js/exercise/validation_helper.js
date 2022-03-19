@@ -147,11 +147,10 @@ export function elementIsChildOf(elID, parentID) {
 
 export function linkTargetIsCorrect(elID, target) {
   let el = document.getElementById(elID);
-  console.log(el.href);
   if (el && el.getAttribute("href") === target) {
     return getSuccessResultObj();
   }
-  return getFailResultObj(`Das Ziel des Links <em>${el.id}</em> ist nicht korrekt!`);
+  return getFailResultObj(`Das Ziel des Links <em>${elID}</em> ist nicht korrekt!`);
 }
 
 export function linkContentIsCorrect(elID, content) {
@@ -159,7 +158,7 @@ export function linkContentIsCorrect(elID, content) {
   if (el && el.innerHTML === content) {
     return getSuccessResultObj();
   }
-  return getFailResultObj(`Der Inhalt des Links <em>${el.id}</em> ist nicht korrekt!`);
+  return getFailResultObj(`Der Inhalt des Links <em>${elID}</em> ist nicht korrekt!`);
 }
 
 export function elSrcAttributeIs(elID, path) {
@@ -167,7 +166,7 @@ export function elSrcAttributeIs(elID, path) {
   if (el && el.getAttribute("src") === path) {
     return getSuccessResultObj();
   }
-  return getFailResultObj(`Der Pfad des Elements <em>${el.id}</em> ist nicht korrekt!`);
+  return getFailResultObj(`Der Pfad des Elements <em>${elID}</em> ist nicht korrekt!`);
 }
 
 export function checkTableContent(elID, tableContent) {
@@ -199,6 +198,9 @@ export function checkTableContent(elID, tableContent) {
 }
 export function elAttributeValueRegex(elID, attributeName, pattern) {
   let el = document.getElementById(elID);
+  if (!el) {
+    return getFailResultObj(`Der HTML-Element <em>${elID}</em> existiert nicht!`);
+  }
   let myRe = new RegExp(pattern)
   let attribute = el.attributes[attributeName];
   if (el && attribute && myRe.exec(attribute.value)) {
@@ -209,9 +211,13 @@ export function elAttributeValueRegex(elID, attributeName, pattern) {
 
 export function elCheckAttributeValue(elID, attributeName, value) {
   let el = document.getElementById(elID);
-  let attribute = el.attributes[attributeName];
-  if (attribute && attribute.value === value) {
-    return getSuccessResultObj();
+  if (el) {
+    let attribute = el.attributes[attributeName];
+    if (attribute && attribute.value === value) {
+      return getSuccessResultObj();
+    }
+  } else {
+    return getFailResultObj(`Das HTML-Elements ${elID} existiert nicht!`);
   }
   return getFailResultObj(`Das Attribut ${attributeName} des HTML-Elements ${elID} hat den falschen Wert!`);
 }

@@ -4,7 +4,7 @@ import {
     exerciseTipListEl} from './dom_selectors.js';
 import { exerciseMessageHandler } from './event_handler.js';
 import { exercises } from './exercise_setup.js';
-import { getExerciseState, getPlayerGold, updatePlayerGold, writeExerciseState } from './model.js';
+import { getExerciseState, writeExerciseState } from './model.js';
 import { updateExerciseState } from './experiment_state_handler.js';
 import { updatePageVariables } from './view.js';
 
@@ -19,7 +19,7 @@ function init() {
     initializeActiveExercise();
     window.addEventListener("message", exerciseMessageHandler, false);
 }
-window.onload = init;
+init();
 
 function initializePlayerGold() {
     let playerGold = localStorage.getItem("playerGold");

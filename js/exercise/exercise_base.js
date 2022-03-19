@@ -2,6 +2,7 @@ import { getEmptyExerciseStateMessage, getEmptyInitInstructionsMessage, getEmpty
 
 class Exercise {
   constructor(exerciseID, instructions, tips, validationFuncs) {
+    console.log(`Setup exercise ${exerciseID}`);
     this.exerciseID = exerciseID
     this.instructions = instructions;
     this.tips = tips;
@@ -9,6 +10,7 @@ class Exercise {
   }
 
   init() {
+    console.log(`Initialize exercise ${this.exerciseID}`);
     window.parent.postMessage(this.getInstructionsMsg(), window.origin);
     window.parent.postMessage(this.getTipsMsg(), window.origin);
     this.validate(this.exerciseID, this.validationFuncs);

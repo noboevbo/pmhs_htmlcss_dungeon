@@ -13,7 +13,7 @@ let tips = [
   {level: 1, title: "Video: HTML Block- vs Inline-Elemente.", content: `<iframe width="560" height="315" src="https://www.youtube.com/embed/rmkPU84RaY4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`, weblinks: ["https://developer.mozilla.org/de/docs/Web/HTML/Inline_elements"], contentIsHTML: true},
   {level: 1, title: "Wie finde ich heraus was HTML Block-Elemente sind?.", content: "Du kannst einfach nach HTML Inline-Elemente googlen! Dort solltest du schnell Informationen finden. Ansonsten findest du hier zwei Links, die dir sicherlich weiterhelfen!", weblinks: ["https://developer.mozilla.org/de/docs/Web/HTML/Inline_elements", "https://www.w3schools.com/htmL/html_blocks.asp"]},
   {level: 3, title: "Lösung anzeigen", content: `Die Lösung kann z.B. so aussehen, es gibt aber noch viel mehr Inline-Elemente! <xmp>
-  <b>Hello</b>, this is <code>a code</code> and <small>small Text</small>.
+  <b>Hello</b>, this is <code>a code</code> and <small>small Text</small>
   </xmp>`, contentIsHTML: true}
 ]
 
