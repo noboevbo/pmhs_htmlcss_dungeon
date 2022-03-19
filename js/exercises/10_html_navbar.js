@@ -1,4 +1,4 @@
-import { elementIsCorrectTag, elementIsChildOf, validate, getFailResultObj, elementsExist, getSuccessResultObj} from '../check_helper.js';
+import { elementIsCorrectTag, elementIsChildOf, validate, getFailResultObj, elementsExist, getSuccessResultObj} from '../validation_helper.js';
 
 let exerciseID = "10_html_navbar";
 

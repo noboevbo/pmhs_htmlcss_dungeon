@@ -1,4 +1,4 @@
-import { hasMinBlockOrInlineElements, validate} from '../check_helper.js';
+import { hasMinBlockOrInlineElements, validate} from '../validation_helper.js';
 
 let exerciseID = "03_html_block_elemente";
 

@@ -1,4 +1,4 @@
-import { elementIsCorrectTag, elementsExist, elCheckAttributeValue, elSrcAttributeIs, elAttributeValueRegex, or, validate} from '../check_helper.js';
+import { elementIsCorrectTag, elementsExist, elCheckAttributeValue, elSrcAttributeIs, elAttributeValueRegex, or, validate} from '../validation_helper.js';
 
 let exerciseID = "06_html_embedded";
 

@@ -1,4 +1,4 @@
-import { elementIsCorrectTag, elementsExist, or, validate} from '../check_helper.js';
+import { elementIsCorrectTag, elementsExist, or, validate} from '../validation_helper.js';
 
 let exerciseID = "09_html_strukturierung";
 

@@ -1,4 +1,4 @@
-import { elementIsCorrectTag, linkTargetIsCorrect, linkContentIsCorrect, elSrcAttributeIs, or, validate} from '../check_helper.js';
+import { elementIsCorrectTag, linkTargetIsCorrect, linkContentIsCorrect, elSrcAttributeIs, or, validate} from '../validation_helper.js';
 
 let exerciseID = "05_html_pfade";
 

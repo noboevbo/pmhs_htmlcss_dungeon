@@ -1,4 +1,4 @@
-import { elementIsCorrectTag, getFailResultObj, getSuccessResultObj, innerTextEquals, innerTextStartsWith, isBlockElement, isInlineElement, listHasMinElements, validate} from '../check_helper.js';
+import { elementIsCorrectTag, getFailResultObj, getSuccessResultObj, innerTextEquals, innerTextStartsWith, isBlockElement, isInlineElement, listHasMinElements, validate} from '../validation_helper.js';
 
 let exerciseID = "01_html_tags";
 

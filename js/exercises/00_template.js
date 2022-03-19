@@ -1,9 +1,9 @@
-import { validate } from '../check_helper.js';
+import { validate } from '../exercise/validation_helper.js';
 
 let exerciseID = "TODO: insert id";
 
 let validationFuncs = [
-  // TODO: add checks and return {result: xy, errorMessage: xy}, see check_helper for examples
+  // TODO: add exercises and return {result: xy, errorMessage: xy}, see validation_helper for examples
   function() { return TODO }
 ]
 

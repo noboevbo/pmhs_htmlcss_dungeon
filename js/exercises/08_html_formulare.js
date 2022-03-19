@@ -1,4 +1,4 @@
-import { elCheckAttributeValue, elementIsCorrectTag, elementIsChildOf, or, validate} from '../check_helper.js';
+import { elCheckAttributeValue, elementIsCorrectTag, elementIsChildOf, or, validate} from '../validation_helper.js';
 
 let exerciseID = "08_html_formulare";
 

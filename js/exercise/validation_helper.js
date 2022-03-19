@@ -1,4 +1,17 @@
+import { getEmptyExerciseStateMessage } from '../core/models.js';
 import { globalVarDoesNotExistMsg, localVarDoesNotExistMsg, isGlobalNotLocalMsg, wrongTypeMsg, stringIsEmptyMsg, isNotConstMsg, elDoesNotExistMsg, elWrongInnerTextMsg, elWrongStyleValueMsg, wrongValueMsg, logCallDoesNotExist, elWrongTagMsg, validationErrorPossibleUndefinedObjMsg } from './error_messages.js'
+
+// Replace console.log with stub implementation and add.
+window.console.stdlog = console.log.bind(console);
+window.console.log = function(txt) {
+    console.stdlog(txt);
+    let logcalls = JSON.parse(localStorage.getItem("logcalls"));
+    if (!logcalls) {
+        logcalls = [];
+    }
+    logcalls.push(txt);
+    localStorage.setItem("logcalls", JSON.stringify(logcalls));
+}
 
 export function getFailResultObj(errorMessage) {
   return {result: false, errorMessage}
@@ -81,7 +94,7 @@ export function consoleContains(strValue){
     return getFailResultObj(logCallDoesNotExist(strValue));
 }
 
-/* HTML Element Checks */
+/* HTML Element exercises */
 export function elementsExist(elTagName, numOfElements, allowMoreElements=false, inEl=null) {
   let els = inEl ? inEl.getElementsByTagName(elTagName) : document.getElementsByTagName(elTagName);
   if ((allowMoreElements && els.length >= numOfElements) || els.length === numOfElements) {
@@ -310,18 +323,17 @@ export function validate(exerciseID, validationFuncs, beforeSuccess = noop, afte
       // errorMessages.push(e);
     }
   }
-  let exerciseState = window.parent.getExerciseState(exerciseID);
+  // let exerciseState = window.parent.getExerciseState(exerciseID);
+  let exerciseSolvedMsg = getEmptyExerciseStateMessage();
+  exerciseSolvedMsg.exerciseID = exerciseID;
   if (finalResult) {
     beforeSuccess();
-    exerciseState.solved = true;
-    window.parent.writeExerciseState(exerciseID, exerciseState);
-    window.parent.updateExerciseState(exerciseID, exerciseState, errorMessages);
+    exerciseSolvedMsg.content = true;
+    window.parent.postMessage(exerciseSolvedMsg, window.origin);
     afterSuccess();
   } else {
     beforeFail();
-    exerciseState.solved = false;
-    window.parent.writeExerciseState(exerciseID, exerciseState);
-    window.parent.updateExerciseState(exerciseID, exerciseState, errorMessages);
+    window.parent.postMessage(exerciseSolvedMsg, window.origin);
     afterFail();
   }
 }

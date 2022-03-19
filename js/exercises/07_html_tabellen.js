@@ -1,4 +1,4 @@
-import { elementIsCorrectTag, elementsExist, checkTableContent, or, validate} from '../check_helper.js';
+import { elementIsCorrectTag, elementsExist, checkTableContent, or, validate} from '../validation_helper.js';
 
 let exerciseID = "07_html_tabellen";
 
