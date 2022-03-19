@@ -1,15 +1,28 @@
-import { validate } from '../exercise/validation_helper.js';
+import {
+  TODO
+} from '../exercise/validation_helper.js';
+import { Exercise } from '../exercise/exercise_base.js';
 
 let exerciseID = "TODO: insert id";
 
-let introductions = "TODO";
+let instructions = `
+<ol>
+    <li>TODO</li>
+</ol>`
+
 let validationFuncs = [
   // TODO: add exercises and return {result: xy, errorMessage: xy}, see validation_helper for examples
   function() { return TODO }
 ]
 
 let tips = [
-  TODO
+  {
+    level: 0,
+    title: "",
+    content: ``,
+    weblinks: [""],
+    contentIsHTML: true
+}
 ]
 
 let exerciseBase = new Exercise(exerciseID, instructions, tips, validationFuncs);
