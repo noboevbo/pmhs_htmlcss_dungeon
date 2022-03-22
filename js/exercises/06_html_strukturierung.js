@@ -1,6 +1,6 @@
 import { elementIsCorrectTag, elementsExist, or} from '../exercise/validation_helper.js';;
 import { Exercise } from '../exercise/exercise_base.js';
-let exerciseID = "09_html_strukturierung";
+let exerciseID = "06_html_strukturierung";
 
 let instructions = `
 <ol>

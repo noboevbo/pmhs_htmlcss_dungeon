@@ -1,6 +1,6 @@
 import { elCheckAttributeValue, elementIsCorrectTag, elementIsChildOf, or } from '../exercise/validation_helper.js';;
 import { Exercise } from '../exercise/exercise_base.js';
-let exerciseID = "08_html_formulare";
+let exerciseID = "10_html_formulare";
 
 let instructions = `
 <ol>

@@ -1,7 +1,7 @@
 import { elementIsCorrectTag, elementIsChildOf, getFailResultObj, elementsExist, getSuccessResultObj} from '../exercise/validation_helper.js';
 import { Exercise } from '../exercise/exercise_base.js';
 
-let exerciseID = "10_html_navbar";
+let exerciseID = "08_html_navbar";
 
 let instructions = `
 <ol>

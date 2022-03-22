@@ -1,7 +1,7 @@
 import { elementIsCorrectTag, elementsExist, elCheckAttributeValue, elSrcAttributeIs, elAttributeValueRegex, or} from '../exercise/validation_helper.js';
 import { Exercise } from '../exercise/exercise_base.js';
 
-let exerciseID = "06_html_embedded";
+let exerciseID = "07_html_embedded";
 
 let instructions = `
 <ol>
