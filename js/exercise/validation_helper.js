@@ -229,12 +229,55 @@ export function elCheckAttributeValue(elID, attributeName, value) {
 //   return getFailResultObj(`Der Inhalt des Tags ${elName} ist ${el.innerHTML}, sollte aber ${el.innerHTML} sein.`)
 // }
 
+export const cssBorderColorNames = ["border-top-color", "border-left-color", "border-bottom-color", "border-right-color"]
+export const cssBorderWidthNames = ["border-top-width", "border-left-width", "border-bottom-width", "border-right-width"]
+export const cssBorderStyleNames = ["border-top-style", "border-left-style", "border-bottom-style", "border-right-style"]
+export const cssMarginNames = ["margin-top", "margin-left", "margin-bottom", "margin-right"]
+export const cssPaddingNames = ["padding-top", "padding-left", "padding-bottom", "padding-right"]
+
+export function classCheckStyleSameValue(className, names, value) {
+  return classCheckStyleValues(className, names, Array(names.length).fill(value))
+}
+
+export function classCheckStyleValues(className, names, values) {
+  for (let i=0; i<names.length; i++) {
+    let result = classHasCorrectStyleValue(className, names[i], values[i]);
+    if (!result.result) {
+      return result;
+    }
+  }
+  return getSuccessResultObj();
+}
+
+
+
+export function classHasCorrectStyleValue(className, styleName, styleValue) {
+  let els = document.getElementsByClassName(className);
+  if (els.length === 0) {
+    return getFailResultObj(`Keine Elemente gefunden, die die CSS Klasse <em>${className}</em> nutzen.`);
+  } 
+  for(let i=0; i< els.length; i++) {
+    let result = elHasCorrectStyleValue(els[i], className, styleName, styleValue);
+    if (!result.result) {
+      return result
+    }
+  }
+  return getSuccessResultObj();
+}
+
 export function hasCorrectStyleValue(elName, styleName, styleValue) {
-  let h1El = document.getElementById(elName);
-  if (!h1El) {
+  let el = document.getElementById(elName);
+  return elHasCorrectStyleValue(el, elName, styleName, styleValue);
+}
+
+function elHasCorrectStyleValue(el, elName, styleName, styleValue) {
+  if (!el) {
     return getFailResultObj(elDoesNotExistMsg(elName));
   } 
-  if (h1El.style[styleName] !== styleValue) {
+  let compStyles = window.getComputedStyle(el);
+  let currentValue = compStyles.getPropertyValue(styleName);
+  console.log(`${styleName} Ist: ${currentValue} / Soll: ${styleValue}`);
+  if (currentValue !== styleValue) {
     return getFailResultObj(elWrongStyleValueMsg(elName, styleName, styleValue));
   }
   return getSuccessResultObj();
