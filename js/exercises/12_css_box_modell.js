@@ -6,6 +6,7 @@ let exerciseID = "12_css_box_modell";
 
 let instructions = `
 <ol>
+<li>Wenn dir der Begriff <em>Boxmodell</em> nichts sagt, lies zunächst folgende Seite durch: <a href="https://wiki.selfhtml.org/wiki/CSS/Tutorials/Boxmodell#Fazit" target="_blank">wiki.selfhtml.org - Boxmodell</a></li>
 <li>Die HTML Datei enthält zwei Boxen. Diese sind aktuell noch nicht formatiert. Setze die Hintergrundfarbe für alle Elemente der Klasse <em>box</em> auf <em>red</em>. Der CSS Code ist unter <em>.box {...}</em> schon vorbereitet.</li>
 <li>Lege für alle Boxen eine Höhe und Breite von jeweils <em>200px</em> fest.</li>
 <li>Füge für jede Box einen Rand hinzu. Dieser soll die Farbe <em>blue</em> haben, <em>20px</em> breit sein und den style <em>solid</em> haben.</li>

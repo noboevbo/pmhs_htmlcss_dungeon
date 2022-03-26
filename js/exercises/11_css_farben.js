@@ -6,6 +6,12 @@ let exerciseID = "11_css_farben";
 
 let instructions = `
 <ol>
+Selektoren, Farben, Typo1
+H1-H3 font: Times new Roman, serif
+Überschrift 1: Farbe
+
+Überschrift 2-4: Farbe rot
+Überschrift 1.1: style Attribut farbe grün hex
 <li>Bearbeite die HTML Datei so, dass die Hintergrundfarbe der Überschrift <em>DarkSlateGray</em> (Hex: #2F4F4F) und die Schriftfarbe <em>weiß</em> ist.</li>
 <li>Arbeite im vorbereiten CSS Element h1 { ... }.</li>
 </ol>
