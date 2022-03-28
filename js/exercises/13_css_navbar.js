@@ -27,20 +27,19 @@ let tips = [
       margin: 0;
       padding: 0;
       width: 200px;
-      background-color: #f1f1f1;
+      background-color: #000;
     }
 
     li a {
       display: block;
-      color: #000;
-      padding: 8px 16px;
+      color: #fff;
+      padding: 8px 16px; 
       text-decoration: none;
     }
 
-    /* Change the link color on hover */
     li a:hover {
-      background-color: #555;
-      color: white;
+      background-color: #fff;
+      color: #000;
     }
   </style>
 [...]
