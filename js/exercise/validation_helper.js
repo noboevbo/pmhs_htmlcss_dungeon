@@ -265,6 +265,52 @@ export function classHasCorrectStyleValue(className, styleName, styleValue) {
   return getSuccessResultObj();
 }
 
+function getAllCSSRules() {
+  return [...document.styleSheets]
+  .map(styleSheet => {
+    try {
+      return [...styleSheet.cssRules]
+        .map(rule => rule.cssText)
+        .join('');
+    } catch (e) {
+      console.log('Access to stylesheet %s is denied. Ignoring...', styleSheet.href);
+    }
+  })
+  .filter(Boolean)
+  .join('\n');
+}
+
+export function cssContains(requiredText) {
+  let scriptEl = document.getElementById("meinStyle");
+  console.log(scriptEl);
+  if (!scriptEl.innerText.toUpperCase().includes(requiredText.toUpperCase())) {
+    return getFailResultObj(`Dein Script enthält kein ${requiredText}!`);
+  }
+  return getSuccessResultObj();
+}
+
+export function hasClassStyleValue(className, styleName, styleValue) {
+  let styleSheets = document.styleSheets;
+  console.log(styleSheets);
+  for (let i=0; i<styleSheets.length; i++) {
+    let styleSheet = styleSheets[0];
+    for (let ruleNum=0; ruleNum<styleSheet.cssRules.length; ruleNum++) {
+      let rule = styleSheet.cssRules[ruleNum];
+      if (rule.selectorText === className) {
+        if (rule.style[styleName] === styleValue) {
+          return getSuccessResultObj();
+        }
+      }
+    }
+  }
+  return getFailResultObj(`Im CSS Style ${className} fehlt noch etwas oder ein Wert ist nicht korrekt!`);
+}
+
+export function hasQuerySelectorCorrectStyleValue(querySelector, styleName, styleValue) {
+  let el = document.querySelector(querySelector);
+  return elHasCorrectStyleValue(el, querySelector, styleName, styleValue);
+}
+
 export function hasCorrectStyleValue(elName, styleName, styleValue) {
   let el = document.getElementById(elName);
   return elHasCorrectStyleValue(el, elName, styleName, styleValue);
