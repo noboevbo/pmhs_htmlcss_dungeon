@@ -16,7 +16,7 @@ let instructions = `
 `
 
 let tips = [
-  {level: 1, title: "Video: TODO", content: `TODO`, weblinks: [], contentIsHTML: true},
+  {level: 1, title: "Video: CSS Boxmodell", content: `<iframe width="560" height="315" src="https://www.youtube.com/embed/MK2bwMyXV80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`, weblinks: ["https://wiki.selfhtml.org/wiki/CSS/Tutorials/Hintergrund/Gestaltung_mit_CSS", "https://wiki.selfhtml.org/wiki/CSS/Tutorials/Boxmodell"], contentIsHTML: true},
   {level: 2, title: "Klassen Style bearbeiten", content: `Style Klassen können beliebige Namen haben. Im Beispiel gibt es die Klasse <em>box</em>. Diese muss im Element im Attribut <em>class="box"</em> angegeben werden. Einem Element können beliebig viele Klassen zugeordnet werden! Im CSS wird die Klasse über ihren Namen mit einem vorangestellten Punkt angesprochen, also im Beispiel <em>.box { ... }</em>`, weblinks: [], contentIsHTML: true},
   {level: 2, title: "Benötigte Elemente und Styles", content: `<ul>
   <li>Hintergrundfarbe: background-color</li>

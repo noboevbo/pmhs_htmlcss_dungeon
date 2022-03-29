@@ -15,7 +15,7 @@ let instructions = `
 `
 
 let tips = [
-  {level: 1, title: "Video: TODO", content: `TODO`, weblinks: ["https://wiki.selfhtml.org/wiki/CSS/Tutorials/Hintergrund/Gestaltung_mit_CSS", "https://www.w3schools.com/colors/colors_names.asp"], contentIsHTML: true},
+  {level: 1, title: "Video: Selektoren", content: `<iframe width="560" height="315" src="https://www.youtube.com/embed/QWnvqFLf3ys" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`, weblinks: ["https://wiki.selfhtml.org/wiki/CSS/Selektoren/Typselektor", "https://wiki.selfhtml.org/wiki/CSS/Selektoren/Klassenselektor"], contentIsHTML: true},
   {level: 2, title: "Benötigte Elemente und Styles", content: `<ul>
   <li>Hintergrundfarbe: background-color</li>
   <li>Textfarbe: color</li>
@@ -23,7 +23,7 @@ let tips = [
   <li>Text zentrieren: text-align</li>
   <li>Schriftfamilie: font-family (Fallbacks werden durch Komma getrennt)</li>
   </ul>
-  `, weblinks: ["https://wiki.selfhtml.org/wiki/CSS/Tutorials/Hintergrund/Gestaltung_mit_CSS", "https://wiki.selfhtml.org/wiki/CSS/Tutorials/Boxmodell"]},
+  `, weblinks: ["https://wiki.selfhtml.org/wiki/CSS/Selektoren/Typselektor", "https://wiki.selfhtml.org/wiki/CSS/Selektoren/Klassenselektor"]},
   {level: 2, title: "Style auf mehrere Elemente anwenden", content: `Um einen Style auf mehrere Elemente anzuwenden gibt es verschiedene Möglichkeiten. Man könnte allen Elementen die selbe CSS Klasse zuweisen, oder man nutzt den selben Code für mehrere Selektoren. Ein Beispiel wäre die selbe Schriftart für alle Überschriften, dafür müssen die Selektoren mit Komma getrennt geschrieben werden, z.B. <em>h1, h2, h3 { ... }</em>, hier würden alle Styles auf h1-h3 angewendet.`, weblinks: ["https://wiki.selfhtml.org/wiki/CSS/Selektoren/Typselektor", "https://wiki.selfhtml.org/wiki/CSS/Selektoren/Klassenselektor"], contentIsHTML: true},
   {level: 3, title: "Lösung anzeigen", content: `Die Lösung ist: <xmp>
   <style id="meinStyle">
