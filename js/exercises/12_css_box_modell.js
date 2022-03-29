@@ -16,8 +16,22 @@ let instructions = `
 `
 
 let tips = [
-  {level: 1, title: "Video: Tabellen in HTML", content: `TODO`, weblinks: ["https://wiki.selfhtml.org/wiki/CSS/Tutorials/Hintergrund/Gestaltung_mit_CSS", "https://www.w3schools.com/colors/colors_names.asp"], contentIsHTML: true},
-  {level: 1, title: "Benötigte HTML Elemente", content: "Den Hintergrund ändert man mit der Eigenschaft <em>background-color</em> und die Textfarbe mit der Eigenschaft <em>color</em>. Sieh dir den Link zu den Farbnamen an um Informationen über vordefinierte Farben zu erhalten.", weblinks: ["https://wiki.selfhtml.org/wiki/CSS/Tutorials/Hintergrund/Gestaltung_mit_CSS", "https://www.w3schools.com/colors/colors_names.asp"]},
+  {level: 1, title: "Video: TODO", content: `TODO`, weblinks: [], contentIsHTML: true},
+  {level: 2, title: "Klassen Style bearbeiten", content: `Style Klassen können beliebige Namen haben. Im Beispiel gibt es die Klasse <em>box</em>. Diese muss im Element im Attribut <em>class="box"</em> angegeben werden. Einem Element können beliebig viele Klassen zugeordnet werden! Im CSS wird die Klasse über ihren Namen mit einem vorangestellten Punkt angesprochen, also im Beispiel <em>.box { ... }</em>`, weblinks: [], contentIsHTML: true},
+  {level: 2, title: "Benötigte Elemente und Styles", content: `<ul>
+  <li>Hintergrundfarbe: background-color</li>
+  <li>Farbwerte: z.B. #ff0000 (je zwei Stellen für r, g und b) = rot, alternativ: einfach <em>red</em></li>
+  <li>Breite: width</li>
+  <li>Höhe: height</li>
+  <li>Randfarbe: border-color</li>
+  <li>Randdicke: border-width</li>
+  <li>Randart: border-style</li>
+  <li>Rand zusammengefasst: border: width color style</li>
+  <li>Innenabstand: padding</li>
+  <li>Aussenabstand: margin</li>
+  <li>Aussen-/Innenabstand für seite: margin/padding-top/left/bottom/right</li>
+  </ul>
+  `, weblinks: ["https://wiki.selfhtml.org/wiki/CSS/Tutorials/Hintergrund/Gestaltung_mit_CSS", "https://wiki.selfhtml.org/wiki/CSS/Tutorials/Boxmodell"], contentIsHTML: true},
   {level: 3, title: "Lösung anzeigen", content: `Die Lösung ist: <xmp>
 <style id="meinStyle">
   .box {
