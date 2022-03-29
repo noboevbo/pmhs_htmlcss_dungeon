@@ -64,11 +64,11 @@ let validationFuncs = [
   function() { return hasQuerySelectorCorrectStyleValue("ul", "list-style-type", `none`); },
   function() { return hasQuerySelectorCorrectStyleValue("ul", "background-color", "rgb(0, 0, 0)"); },
   function() { return hasQuerySelectorCorrectStyleValue("li a", "color", "rgb(255, 255, 255)"); },
-  function() { return hasStyleValue("li a:hover", "color", "rgb(0, 0, 0)"); },
-  function() { return hasStyleValue("li a:hover", "background-color", "rgb(255, 255, 255)"); },
+  function() { return hasStyleValue("li > a:hover", "color", "rgb(0, 0, 0)"); },
+  function() { return hasStyleValue("li > a:hover", "background-color", "rgb(255, 255, 255)"); },
   function() { return hasQuerySelectorCorrectStyleValue("ul", "width", `200px`); },
-  function() { return hasStyleValue("li a", "text-decoration", "none"); },
-  function() { return hasQuerySelectorCorrectStyleValue("li a", "display", "block"); },
+  function() { return hasStyleValue("li > a", "text-decoration", "none"); },
+  function() { return hasQuerySelectorCorrectStyleValue("li > a", "display", "block"); },
 ]
 
 let exerciseBase = new Exercise(exerciseID, instructions, tips, validationFuncs);
