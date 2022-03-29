@@ -1,7 +1,7 @@
 import { elementIsCorrectTag, elementsExist, checkTableContent, or, hasCorrectStyleValue, hasQuerySelectorCorrectStyleValue, cssContains, hasClassStyleValue} from '../exercise/validation_helper.js';
 import { Exercise } from '../exercise/exercise_base.js';
 
-let exerciseID = "11_css_farben";
+let exerciseID = "11_css_selektoren";
 
 
 let instructions = `

@@ -13,8 +13,9 @@ let exercises = [
   { id: "10_html_formulare", name: "HTML Formulare", level: 2 },
   // CSS
   { id: "11_css_selektoren", name: "CSS Selektoren", level: 2 },
-  { id: "12_css_box_modell", name: "CSS Box-Modell", level: 2 },
-  { id: "13_css_navbar", name: "CSS Navigationsleiste", level: 2 },
+  { id: "12_css_box_modell", name: "CSS Box-Modell", level: 3 },
+  { id: "13_css_navbar", name: "CSS Navigationsleiste", level: 3 },
+  { id: "14_css_responsive_img", name: "CSS Responsive Image", level: 3 },
 ];
 
 export { exercises };

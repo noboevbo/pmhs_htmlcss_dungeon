@@ -289,6 +289,73 @@ export function cssContains(requiredText) {
   return getSuccessResultObj();
 }
 
+export function checkMediaQueries(selektor, conditionTexts, stylesForBreakpoints) {
+  let styleSheets = document.styleSheets;
+  if (styleSheets.length !== 1) {
+    return getFailResultObj("Mehr als ein StyleSheet gefunden, dies wird aktuell nicht unterstützt!")
+  }
+  let styleSheet = styleSheets[0];
+  let corrects = Array(conditionTexts.length).fill(false);
+  for (let ruleNum=0; ruleNum<styleSheet.cssRules.length; ruleNum++) {
+    console.log(styleSheet);
+    let rule = styleSheet.cssRules[ruleNum];
+    console.log(rule.constructor.name)
+    if (rule.constructor.name === "CSSMediaRule") {
+      let returnValues = checkMediaRule(rule, selektor, conditionTexts, stylesForBreakpoints, Array(conditionTexts.length).fill(false), 0);
+      console.log(returnValues);
+      for (let i=0; i<corrects.length; i++) {
+        if (returnValues[i] && !corrects[i]) {
+          corrects[i] = true;
+        }
+      }
+    }
+  }
+  for (let i=0; i<corrects.length; i++) {
+    if (!corrects[i]) {
+      console.log(corrects);
+      return getFailResultObj(`Media Query oder Style für ${selektor} (${conditionTexts[i]}) nicht korrekt.`);
+    }
+  }
+  return getSuccessResultObj();
+}
+
+function checkMediaRule(rule, selektor, conditionTexts, values, returnValues, currentDepth) {
+  console.log(`Current Depth: ${currentDepth}`);
+  if (rule.conditionText !== conditionTexts[currentDepth]) {
+    console.log(`Ist: ${rule.conditionText}; Soll: ${conditionTexts[currentDepth]};`)
+    return returnValues;
+  }
+  console.log("Check subrules");
+  for (let ruleNum=0; ruleNum<rule.cssRules.length; ruleNum++) {
+    let childRule = rule.cssRules[ruleNum];
+    if (childRule.constructor.name === "CSSMediaRule") {
+      if(!checkMediaRule(childRule, selektor, conditionTexts, values, returnValues, currentDepth+1)) {
+        return false;
+      }
+    } else {
+      returnValues[currentDepth] = checkCSSStyleRule(childRule, selektor, values[currentDepth]);
+    }
+  }
+
+  return returnValues;
+}
+
+function checkCSSStyleRule(rule, selektor, values) {
+  if (rule.selectorText === selektor) {
+    let correctStyles = true;
+    for (let i=0; i<values.length; i++) {
+      let style = values[i];
+      if (rule.style[style.name] !== style.value) {
+        correctStyles = false;
+      }
+    }
+    if (!correctStyles) {
+      return false;
+    }
+  }
+  return true;
+}
+
 export function hasClassStyleValue(className, styleName, styleValue) {
   let styleSheets = document.styleSheets;
   console.log(styleSheets);
